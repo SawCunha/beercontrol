@@ -52,7 +52,7 @@ public class Movement {
     @Column(name = "UPDATED_DATE", nullable = false)
     private LocalDateTime updated;
 
-    @Column(name = "CONFIRMATION_DATE", nullable = false)
+    @Column(name = "CONFIRMATION_DATE")
     private LocalDateTime confirmation;
 
     @Column(name = "AUTOMATIC", nullable = false)

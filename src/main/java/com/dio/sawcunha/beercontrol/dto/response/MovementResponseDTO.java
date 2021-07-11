@@ -1,4 +1,4 @@
-package com.dio.sawcunha.beercontrol.dto.request;
+package com.dio.sawcunha.beercontrol.dto.response;
 
 import com.dio.sawcunha.beercontrol.enums.eMovementStatus;
 import com.dio.sawcunha.beercontrol.enums.eMovementType;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MovementDTO {
+public class MovementResponseDTO {
 
     private Long id;
 
@@ -24,7 +24,7 @@ public class MovementDTO {
 
     private eMovementStatus movementStatus;
 
-    private WarehouseRequestDTO warehouseRequestDTO;
+    private WarehouseResponseDTO warehouse;
 
     private Long quantity;
 

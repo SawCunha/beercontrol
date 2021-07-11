@@ -65,6 +65,26 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(MovementNotFoundIdentifierException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    protected ExceptionResponse handleSecurity(MovementNotFoundIdentifierException exception){
+        return ExceptionResponse.builder()
+                .codErro(exception.getCode())
+                .message(exception.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(MovementNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    protected ExceptionResponse handleSecurity(MovementNotFoundException exception){
+        return ExceptionResponse.builder()
+                .codErro(exception.getCode())
+                .message(exception.getMessage())
+                .build();
+    }
+
     @ExceptionHandler(BeerHasWarehouseDeleteException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -99,6 +119,36 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(BeerHasWarehouseException exception){
+        return ExceptionResponse.builder()
+                .codErro(exception.getCode())
+                .message(exception.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(NotUpdateMovementException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(NotUpdateMovementException exception){
+        return ExceptionResponse.builder()
+                .codErro(exception.getCode())
+                .message(exception.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(QtdMoveGreaterZero.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(QtdMoveGreaterZero exception){
+        return ExceptionResponse.builder()
+                .codErro(exception.getCode())
+                .message(exception.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(NotDeleteMovementException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(NotDeleteMovementException exception){
         return ExceptionResponse.builder()
                 .codErro(exception.getCode())
                 .message(exception.getMessage())

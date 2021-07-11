@@ -1,5 +1,6 @@
 package com.dio.sawcunha.beercontrol.service;
 
+import com.dio.sawcunha.beercontrol.config.BeerControlProperties;
 import com.dio.sawcunha.beercontrol.dto.request.WarehouseRequestDTO;
 import com.dio.sawcunha.beercontrol.dto.response.WarehouseResponseDTO;
 import com.dio.sawcunha.beercontrol.entity.Beer;
@@ -29,6 +30,8 @@ public class WarehouseService {
     private final BeerRepository beerRepository;
     private final WarehouseMapper warehouseMapper;
     private final ValidUpdateEntityWarehouse validUpdateEntity;
+    private final NotificationWarehouseService notificationWarehouseService;
+    private final BeerControlProperties beerControlProperties;
 
     @Transactional(readOnly = true)
     public BeerControlResponse<List<WarehouseResponseDTO>> findAll() {
@@ -80,5 +83,11 @@ public class WarehouseService {
             throw new WarehouseNotFoundException();
         }
         warehouseRepository.delete(warehouse);
+    }
+
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public void checkWarehouse() {
+        warehouseRepository.findWarehouseByQuantityGreaterThanQuantityMax().forEach(warehouse ->
+                notificationWarehouseService.createNotification(warehouse,beerControlProperties.getMsg_warehouse_max_expect(),null));
     }
 }
