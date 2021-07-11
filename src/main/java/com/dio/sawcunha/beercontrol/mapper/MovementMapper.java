@@ -1,6 +1,6 @@
 package com.dio.sawcunha.beercontrol.mapper;
 
-import com.dio.sawcunha.beercontrol.dto.MovementDTO;
+import com.dio.sawcunha.beercontrol.dto.request.MovementDTO;
 import com.dio.sawcunha.beercontrol.entity.Movement;
 import org.mapstruct.Mapper;
 

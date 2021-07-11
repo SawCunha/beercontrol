@@ -17,7 +17,7 @@ import static springfox.documentation.builders.RequestHandlerSelectors.basePacka
 public class SwaggerConfig {
 
     private static final String BASE_PACKAGE = "com.dio.sawcunha.beercontrol.controller";
-    private static final String API_TITLE = "Beer Stock API";
+    private static final String API_TITLE = "Beer Control API";
     private static final String API_DESCRIPTION = "REST API for beer stock management";
     private static final String CONTACT_NAME = "Samuel Cunha";
     private static final String CONTACT_GITHUB = "https://gtihub.com/sawcunha";

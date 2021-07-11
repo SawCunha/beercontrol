@@ -1,4 +1,4 @@
-package com.dio.sawcunha.beercontrol.dto;
+package com.dio.sawcunha.beercontrol.dto.response;
 
 import com.dio.sawcunha.beercontrol.enums.eBeerType;
 import lombok.AllArgsConstructor;
@@ -6,14 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BeerDTO {
+public class BeerResponseDTO {
 
     private Long id;
 

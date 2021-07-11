@@ -10,6 +10,7 @@ spring:
     username: sa
     password:
     database-platform: org.hibernate.dialect.H2Dialect
+
   h2:
     console:
       enabled: true
@@ -18,6 +19,8 @@ spring:
         web-admin-password: beercontrol
         trace: true
       path: /database_config
+  jpa:
+    show-sql: true
 
 application:
   description: Projeto desenvolvido no Bootcamp GFT Start ## 2Java

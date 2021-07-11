@@ -1,4 +1,4 @@
-package com.dio.sawcunha.beercontrol.dto;
+package com.dio.sawcunha.beercontrol.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WarehouseDTO {
+public class WarehouseResponseDTO {
 
     private Long id;
 
-    private BeerDTO beer;
+    private BeerResponseDTO beer;
 
     private Long quantityMin;
 

@@ -1,4 +1,4 @@
-package com.dio.sawcunha.beercontrol.dto;
+package com.dio.sawcunha.beercontrol.dto.request;
 
 import com.dio.sawcunha.beercontrol.enums.eMovementStatus;
 import com.dio.sawcunha.beercontrol.enums.eMovementType;
@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -25,7 +24,7 @@ public class MovementDTO {
 
     private eMovementStatus movementStatus;
 
-    private WarehouseDTO warehouseDTO;
+    private WarehouseRequestDTO warehouseRequestDTO;
 
     private Long quantity;
 

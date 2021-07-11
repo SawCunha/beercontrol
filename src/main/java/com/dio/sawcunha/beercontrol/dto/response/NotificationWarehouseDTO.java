@@ -1,4 +1,4 @@
-package com.dio.sawcunha.beercontrol.dto;
+package com.dio.sawcunha.beercontrol.dto.response;
 
 import com.dio.sawcunha.beercontrol.enums.eNotificationStatus;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,7 +16,7 @@ public class NotificationWarehouseDTO {
 
     private Long id;
 
-    private WarehouseDTO warehouseDTO;
+    private WarehouseResponseDTO warehouseResponseDTO;
 
     private eNotificationStatus notificationStatus;
 

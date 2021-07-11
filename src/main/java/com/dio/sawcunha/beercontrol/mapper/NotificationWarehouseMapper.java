@@ -1,6 +1,6 @@
 package com.dio.sawcunha.beercontrol.mapper;
 
-import com.dio.sawcunha.beercontrol.dto.NotificationWarehouseDTO;
+import com.dio.sawcunha.beercontrol.dto.request.NotificationWarehouseDTO;
 import com.dio.sawcunha.beercontrol.entity.NotificationWarehouse;
 import org.mapstruct.Mapper;
 
