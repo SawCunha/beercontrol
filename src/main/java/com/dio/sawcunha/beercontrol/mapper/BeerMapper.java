@@ -6,12 +6,15 @@ import com.dio.sawcunha.beercontrol.entity.Beer;
 import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface BeerMapper {
+
+    BeerMapper INSTANCE = Mappers.getMapper(BeerMapper.class);
 
     Beer toModel(BeerRequestDTO beerRequestDTO);
     BeerResponseDTO toDTO(Beer beer);

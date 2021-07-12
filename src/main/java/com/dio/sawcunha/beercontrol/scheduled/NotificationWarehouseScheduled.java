@@ -1,6 +1,5 @@
 package com.dio.sawcunha.beercontrol.scheduled;
 
-import com.dio.sawcunha.beercontrol.service.MovementService;
 import com.dio.sawcunha.beercontrol.service.WarehouseService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -16,7 +15,6 @@ public class NotificationWarehouseScheduled {
     private final WarehouseService warehouseService;
 
     private static final Logger log = LoggerFactory.getLogger(NotificationWarehouseScheduled.class);
-
 
     @Scheduled(fixedRateString = "${scheduling.notification_time}")
     public void checkWarehouseScheduled() {
