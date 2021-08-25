@@ -23,6 +23,9 @@ public class BeerRequestDTO {
     @NotEmpty(message = "The name must be informed and be unique in the system.")
     private String name;
 
+    @NotEmpty(message = "The name must be informed and be unique in the system.")
+    private String image;
+
     @NotEmpty(message = "The brand must be informed.")
     private String brand;
 

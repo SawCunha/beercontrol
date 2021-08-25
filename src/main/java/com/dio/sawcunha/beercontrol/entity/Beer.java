@@ -27,6 +27,9 @@ public class Beer {
     @Column(name = "NAME", unique = true, nullable = false)
     private String name;
 
+    @Column(name = "IMAGE", unique = true, nullable = false)
+    private String image;
+
     @Column(name = "BRAND", nullable = false)
     private String brand;
 

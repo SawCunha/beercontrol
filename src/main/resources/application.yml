@@ -23,6 +23,29 @@ spring:
       hibernate:
         enable_lazy_load_no_trans: true
     database-platform: org.hibernate.dialect.H2Dialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: email@eemail.com
+    password: email_password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: false
+    protocol: smtp
+    test-connection: true
+    default-encoding: UTF-8
+
+task:
+  corePoolSize: 4
+  maxPoolSize: 4
+  queueCapacity: 500
+  threadNamePrefix: BeerControlLookup-
 
 application:
   description: Projeto desenvolvido no Bootcamp GFT Start ## 2Java
@@ -30,5 +53,7 @@ application:
   msg_success: Moving was successfully carried out to the warehouse.
 
 scheduling:
-  notification_time: 10000
-  movement_time: 10000
+  notification_time: 30000
+  movement_time: 30000
+logging:
+  exception-conversion-word:

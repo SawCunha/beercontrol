@@ -18,6 +18,7 @@ public class BeerFake {
                 .identifier(faker.beer().name())
                 .beerType(eBeerType.MALZBIER)
                 .name(faker.beer().style())
+                .image("image")
                 .build();
     }
 

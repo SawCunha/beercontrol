@@ -5,6 +5,7 @@ import com.dio.sawcunha.beercontrol.dto.response.BeerResponseDTO;
 import com.dio.sawcunha.beercontrol.exception.error.BeerNotFoundException;
 import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
 import com.dio.sawcunha.beercontrol.service.BeerService;
+import com.dio.sawcunha.beercontrol.util.email.SendMail;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +21,12 @@ import java.util.List;
 public class BeerController {
 
     private final BeerService beerService;
+    private final SendMail sendMail;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public BeerControlResponse<List<BeerResponseDTO>> findAll(){
+        sendMail.sendMail();
         return beerService.findAll();
     }
 

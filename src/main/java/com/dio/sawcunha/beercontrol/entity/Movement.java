@@ -58,4 +58,7 @@ public class Movement {
     @Column(name = "AUTOMATIC", nullable = false)
     private boolean automatic;
 
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
+
 }

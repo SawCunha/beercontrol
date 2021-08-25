@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -25,5 +26,9 @@ public class MovementRequestDTO {
     @Positive(message = "The quantity must be greater than zero to carry out the movement.")
     private Long quantity;
     private boolean automatic;
+
+    @NotNull
+    @Email
+    private String email;
 
 }

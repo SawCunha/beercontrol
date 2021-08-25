@@ -72,7 +72,7 @@ public class BeerControllerTest {
 
     @Test
     @Order(2)
-    void updatteBeerSuccess() throws Exception {
+    void updateBeerSuccess() throws Exception {
         // given
         BeerRequestDTO beerRequestDTO = BeerFake.createBeerFake();
         BeerControlResponse<BeerResponseDTO> responseDTOBeerControlResponse = beerMapperExample.toResponseDTO(beerMapperExample.toModel(beerRequestDTO));

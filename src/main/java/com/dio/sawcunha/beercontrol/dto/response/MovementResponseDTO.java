@@ -36,4 +36,6 @@ public class MovementResponseDTO {
 
     private boolean automatic;
 
+    private String email;
+
 }
