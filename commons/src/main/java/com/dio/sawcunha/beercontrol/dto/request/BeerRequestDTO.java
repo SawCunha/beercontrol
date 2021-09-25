@@ -17,14 +17,14 @@ public class BeerRequestDTO {
 
     private Long id;
 
-    @NotEmpty(message = "The identifier must be informed and be unique in the system.")
+    @NotEmpty(message = "The identifier must be informed.")
     private String identifier;
 
-    @NotEmpty(message = "The name must be informed and be unique in the system.")
+    @NotEmpty(message = "The name must be informed.")
     private String name;
 
-    @NotEmpty(message = "The name must be informed and be unique in the system.")
-    private String image;
+    @NotEmpty(message = "The imageBase64 must be informed.")
+    private String photo;
 
     @NotEmpty(message = "The brand must be informed.")
     private String brand;

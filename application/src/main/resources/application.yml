@@ -3,6 +3,13 @@ server:
   servlet:
     context-path: /beercontrol
 
+springdoc:
+  api-docs:
+    path: /api_beer_control
+  swagger-ui:
+    path: /swagger_beer_control.html
+  operationsSorter: method
+
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -53,6 +60,7 @@ application:
   msg_success: Moving was successfully carried out to the warehouse.
 
 scheduling:
+  default: 30000
   notification_time: 30000
   movement_time: 30000
 logging:

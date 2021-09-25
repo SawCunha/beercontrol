@@ -27,8 +27,9 @@ public class Beer {
     @Column(name = "NAME", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "IMAGE", unique = true, nullable = false)
-    private String image;
+    @Lob
+    @Column(name = "IMAGE", unique = false, nullable = false, length = 1000000)
+    private byte[] image;
 
     @Column(name = "BRAND", nullable = false)
     private String brand;

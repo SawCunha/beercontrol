@@ -208,37 +208,6 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>coverage</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>prepare-agent</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -291,6 +260,11 @@
                 <version>1.0.0-BIC</version>
             </dependency>
             <dependency>
+                <groupId>com.dio.sawcunha.beercontrol</groupId>
+                <artifactId>scheduled</artifactId>
+                <version>1.0.0-BIC</version>
+            </dependency>
+            <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
@@ -309,6 +283,8 @@
         <module>service</module>
         <module>validation</module>
         <module>application</module>
+        <module>scheduled</module>
+        <module>distribution</module>
     </modules>
 
 </project>
