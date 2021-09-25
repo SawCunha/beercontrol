@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS --port $PORT -jar -Dspring.config.location=distribution/Build_Dev/resources/ distribution/Build_Dev/Beer_Inventory_Control_App.jar
+web: java $JAVA_OPTS -Dserver.port=$PORT -Dspring.config.location=distribution/Build_Dev/resources/ -jar distribution/Build_Dev/Beer_Inventory_Control_App.jar
