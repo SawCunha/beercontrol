@@ -17,4 +17,6 @@ cp application/target/application-0.0.1-BIC.jar distribution/Build_Dev/$NAME.jar
 echo 'Copiando resources'
 cp -RT application/src/main/resources/ distribution/Build_Dev/resources/
 
+mvn clean
+
 echo 'Final Build'
