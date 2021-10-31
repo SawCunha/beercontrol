@@ -1,7 +1,5 @@
 package com.dio.sawcunha.beercontrol.specification.service;
 
-import com.dio.sawcunha.beercontrol.exception.error.BeerNotFoundException;
-
 public interface ServiceSpec<T,R> {
 
     R findAll();

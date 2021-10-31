@@ -194,4 +194,39 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
         );
     }
 
+    @ExceptionHandler(PersonNotFoundCPFException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(PersonNotFoundCPFException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
+    @ExceptionHandler(PersonNotFoundIDException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(PersonNotFoundIDException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
+    @ExceptionHandler(NotValidException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(NotValidException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
+    @ExceptionHandler(PersonAlreadyRegistersCpfException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(PersonAlreadyRegistersCpfException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
+    @ExceptionHandler(PhoneNotFoundIDException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(PhoneNotFoundIDException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
+    @ExceptionHandler(AddressNotFoundIDException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(AddressNotFoundIDException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
+    @ExceptionHandler(IDPathDifferentBodyException.class)
+    protected ResponseEntity<ExceptionResponse> handleSecurity(IDPathDifferentBodyException e){
+        return ResponseEntity.badRequest().body(e.createResponse());
+    }
+
 }

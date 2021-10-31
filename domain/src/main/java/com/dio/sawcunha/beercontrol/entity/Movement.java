@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "MOVEMENT", indexes = {
+@Table(name = "BIC_MOVEMENT", indexes = {
         @Index(name = "IX_MOVENT", columnList = "MOVEMENT_TYPE, MOVEMENT_STATUS, WAREHOUSE_ID"),
         @Index(name = "IX_MOVEMENT_TYPE_MOVENT", columnList = "MOVEMENT_TYPE"),
         @Index(name = "IX_MOVEMENT_STATUS_MOVENT", columnList = "MOVEMENT_STATUS"),

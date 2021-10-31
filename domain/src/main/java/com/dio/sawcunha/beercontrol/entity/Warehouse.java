@@ -10,11 +10,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "WAREHOUSE", indexes = {
+@Table(name = "BIC_WAREHOUSE", indexes = {
         @Index(name = "IX_BEER_WAREHOUSE", columnList = "BEER_ID")
 })
 @Entity
-
 public class Warehouse {
 
     @Id

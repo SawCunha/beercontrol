@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "BEER")
+@Table(name = "BIC_BEER")
 @Entity
 public class Beer {
 
