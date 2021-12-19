@@ -5,7 +5,7 @@
     <parent>
         <artifactId>beercontrol</artifactId>
         <groupId>com.dio.sawcunha.beercontrol</groupId>
-        <version>0.0.1-BIC</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,6 +16,15 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.directory>../distribution/production</project.build.directory>
         <project.basedir>target/</project.basedir>
+
+        <liquibase-maven-plugin.version>3.5.0</liquibase-maven-plugin.version>
+        <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <javassist.version>3.24.0-GA</javassist.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd-HHmmss</maven.build.timestamp.format>
+
+
     </properties>
 
     <dependencies>
@@ -29,8 +38,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -46,6 +63,10 @@
         </dependency>
         <dependency>
             <groupId>com.dio.sawcunha.beercontrol</groupId>
+            <artifactId>security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dio.sawcunha.beercontrol</groupId>
             <artifactId>service</artifactId>
         </dependency>
         <dependency>
@@ -55,14 +76,21 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -72,6 +100,14 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <skip>false</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>

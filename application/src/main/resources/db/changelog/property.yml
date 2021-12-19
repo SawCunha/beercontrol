@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - property:
+      dbms: oracle,postgresql
+      name: clob.type
+      value: clob
+  - property:
+      dbms: mysql
+      name: clob.type
+      value: longtext
+  - property:
+      dbms: 'mysql, postgresql, h2'
+      name: now
+      value: now()
+  - property:
+      dbms: oracle
+      name: now
+      value: sysdate

@@ -1,0 +1,641 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_BIC_PERSON
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_PERSON
+            dbms:  'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: PERSON_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_PERSON
+                    nullable: false
+              - column:
+                  name: BIRTHDAY
+                  autoIncrement: false
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TAX_IDENTIFIER
+                  autoIncrement: false
+                  type: VARCHAR(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NAME
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: SURNAME
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: GENDER
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create_BIC_ADDRESS
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_ADDRESS
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: ADDRESS_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_ADDRESS
+                    nullable: false
+              - column:
+                  name: ADDRESS_NAME
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: BLOCK
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CITY
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: COMPLEMENT
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: COUNTRY
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NUMBER
+                  autoIncrement: false
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: REFERENCE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: STATE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: STREET
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ZIP_CODE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PERSON_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PERSON_ID_BIC_ADDRESS
+                    validateForeignKey: true
+                    referencedColumnNames: PERSON_ID
+                    referencedTableName: BIC_PERSON
+                    referencedTableSchemaName: public
+  - changeSet:
+      id: create_BIC_PHONE
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_PHONE
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: PHONE_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_PHONE
+                    nullable: false
+              - column:
+                  name: NUMBER_PHONE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PREFIX_INTERNATTIONAL
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PREFIX_NATIONA
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PERSON_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PERSON_ID_BIC_PHONE
+                    validateForeignKey: true
+                    referencedColumnNames: PERSON_ID
+                    referencedTableName: BIC_PERSON
+                    referencedTableSchemaName: public
+  - changeSet:
+      id: create_BIC_PROFILE
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_PROFILE
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: PROFILE_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_PROFILE
+                    nullable: false
+              - column:
+                  name: ACTIVE
+                  autoIncrement: false
+                  type: TINYINT
+                  defaultValue: '1'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DESCRIPTION
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create_BIC_PERMISSIONS
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_PERMISSIONS
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: PERMISSIONS_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_PERMISSIONS
+                    nullable: false
+              - column:
+                  name: LEVEL_ROLE_TYPE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PERMISSION
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create_BIC_PROFILE_PERMISSIONS
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_PROFILE_PERMISSIONS
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: PROFILE_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PROFILE_ID_BIC_PROFILE_PERMISSIONS
+                    validateForeignKey: true
+                    referencedColumnNames: PROFILE_ID
+                    referencedTableName: BIC_PROFILE
+                    referencedTableSchemaName: public
+              - column:
+                  name: PERMISSIONS_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PERMISSIONS_ID_BIC_PROFILE_PERMISSIONS
+                    validateForeignKey: true
+                    referencedColumnNames: PERMISSIONS_ID
+                    referencedTableName: BIC_PERMISSIONS
+                    referencedTableSchemaName: public
+        - addPrimaryKey:
+            columnNames: PROFILE_ID, PERMISSIONS_ID
+            constraintName: PK_BIC_PROFILE_PERMISSIONS
+            tableName: BIC_PROFILE_PERMISSIONS
+            validate: true
+  - changeSet:
+      id: create_BIC_BEER
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_BEER
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: BEER_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_BEER
+                    nullable: false
+              - column:
+                  name: BEER_TYPE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: BRAND
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATED_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IDENTIFIER
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IMAGE
+                  autoIncrement: false
+                  type: BLOB
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NAME
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create_BIC_USER
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_USER
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: USER_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_USER
+                    nullable: false
+              - column:
+                  name: BLOCKED
+                  autoIncrement: false
+                  type: TINYINT
+                  defaultValue: '1'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATED
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: EMAIL
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: FIRST_ACCESS
+                  autoIncrement: false
+                  type: TINYINT
+                  defaultValue: '1'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LAST_ACESS
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LOGIN
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NUMBER_ATTEMPTS
+                  autoIncrement: false
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PASSWORD
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: USER_STATUS
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: USER_TYPE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: PERSON_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PERSON_ID_BIC_USER
+                    validateForeignKey: true
+                    referencedColumnNames: PERSON_ID
+                    referencedTableName: BIC_PERSON
+                    referencedTableSchemaName: public
+              - column:
+                  name: PROFILE_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_PROFILE_ID_BIC_USER
+                    validateForeignKey: true
+                    referencedColumnNames: PROFILE_ID
+                    referencedTableName: BIC_PROFILE
+                    referencedTableSchemaName: public
+  - changeSet:
+      id: create_BIC_WAREHOUSE
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_WAREHOUSE
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: WAREHOUSE_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_WAREHOUSE
+                    nullable: false
+              - column:
+                  name: QUANTITY
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: QUANTITY_MAX_EXPECTD
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: QUANTITY_MIN
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATE_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: BEER_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_BEER_ID_BIC_WAREHOUSE
+                    validateForeignKey: true
+                    referencedColumnNames: BEER_ID
+                    referencedTableName: BIC_BEER
+                    referencedTableSchemaName: public
+  - changeSet:
+      id: create_BIC_MOVEMENT
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_MOVEMENT
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: MOVEMENT_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_MOVEMENT
+                    nullable: false
+              - column:
+                  name: AUTOMATIC
+                  autoIncrement: false
+                  type: TINYINT
+                  defaultValue: '0'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CONFIRMATION_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+              - column:
+                  name: CREATED_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: EMAIL
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: IDENTIFIER
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: MOVEMENT_STATUS
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: MOVEMENT_TYPE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: QUANTITY
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UPDATED_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: WAREHOUSE_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_WAREHOUSE_ID_BIC_MOVEMENT
+                    validateForeignKey: true
+                    referencedColumnNames: WAREHOUSE_ID
+                    referencedTableName: BIC_WAREHOUSE
+                    referencedTableSchemaName: public
+  - changeSet:
+      id: create_BIC_NOTIFICATION_WAREHOUSE
+      author: SamuelCunha
+      changes:
+        - createTable:
+            schemaName: public
+            tableName: BIC_NOTIFICATION_WAREHOUSE
+            dbms: 'h2,  mysql, postgresql'
+            columns:
+              - column:
+                  name: NOTIFICATION_WAREHOUSE_ID
+                  autoIncrement: true
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: PK_BIC_NOTIFICATION_WAREHOUSE
+                    nullable: false
+              - column:
+                  name: CODE
+                  autoIncrement: false
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CREATED_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: MESSAGE
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NOTIFICATION_STATUS
+                  autoIncrement: false
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: SUCCESS
+                  autoIncrement: false
+                  type: TINYINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: UPDATE_DATE
+                  autoIncrement: false
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+              - column:
+                  name: MOVEMENT_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_MOVEMENT_ID_BIC_NOTIFICATION_WAREHOUSE
+                    validateForeignKey: true
+                    referencedColumnNames: MOVEMENT_ID
+                    referencedTableName: BIC_MOVEMENT
+                    referencedTableSchemaName: public
+              - column:
+                  name: WAREHOUSE_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_WAREHOUSE_ID_BIC_NOTIFICATION_WAREHOUSE
+                    validateForeignKey: true
+                    referencedColumnNames: WAREHOUSE_ID
+                    referencedTableName: BIC_WAREHOUSE
+                    referencedTableSchemaName: public

@@ -29,8 +29,6 @@ public class Person {
     private LocalDate birthday;
     @Column(name = "TAX_IDENTIFIER", unique = true)
     private String cpf;
-    @Column(name = "DESCRIPTION")
-    private String description;
     @Column(name = "GENDER")
     @Enumerated(value = EnumType.STRING)
     private eSex sex;

@@ -1,7 +1,6 @@
 package com.dio.sawcunha.beercontrol.entity;
 
 import com.dio.sawcunha.beercontrol.enums.eLevelRoleType;
-import com.dio.sawcunha.beercontrol.enums.eRoleType;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -19,12 +18,12 @@ public class Permissions {
     @Column(name = "PERMISSION")
     private String permission;
 
-    @Column(name = "ROLE_TYPE")
-    @Enumerated(value = EnumType.STRING)
-    private eRoleType roleType;
-
     @Column(name = "LEVEL_ROLE_TYPE")
     @Enumerated(value = EnumType.STRING)
     private eLevelRoleType levelRoleType;
 
+    @Override
+    public String toString() {
+        return String.format("%s:%s",permission,levelRoleType);
+    }
 }

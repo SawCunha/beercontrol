@@ -2,6 +2,7 @@ package com.dio.sawcunha.beercontrol.entity;
 
 
 import com.dio.sawcunha.beercontrol.enums.eUserStatus;
+import com.dio.sawcunha.beercontrol.enums.eUserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,8 +41,13 @@ public class User {
     @Column(name = "LAST_ACESS")
     private LocalDateTime lastAcess;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "USER_STATUS")
     private eUserStatus userStatus;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "USER_TYPE")
+    private eUserType userType;
 
     @Column(name = "BLOCKED")
     private boolean blocked;
@@ -50,7 +56,7 @@ public class User {
     private int numberAttempts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PERSON_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_USER_PERSON"))
+    @JoinColumn(name = "PERSON_ID", foreignKey = @ForeignKey(name = "FK_USER_PERSON"))
     private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY)

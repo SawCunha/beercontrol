@@ -1,7 +1,6 @@
 package com.dio.sawcunha.beercontrol.exception.error;
 
-
-import com.dio.sawcunha.peoplemanager.exceptionmanager.enums.eMessageError;
+import com.dio.sawcunha.beercontrol.exception.enums.eMessageError;
 
 public class PersonAlreadyRegistersCpfException extends ExceptionPeopleManager{
 

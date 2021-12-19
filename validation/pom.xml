@@ -5,12 +5,12 @@
     <parent>
         <artifactId>beercontrol</artifactId>
         <groupId>com.dio.sawcunha.beercontrol</groupId>
-        <version>0.0.1-BIC</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>validation</artifactId>
-    <version>1.0.0-BIC</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -28,5 +28,18 @@
             <artifactId>domain</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

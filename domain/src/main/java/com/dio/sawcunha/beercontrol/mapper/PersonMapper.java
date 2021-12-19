@@ -1,9 +1,7 @@
 package com.dio.sawcunha.beercontrol.mapper;
 
 import com.dio.sawcunha.beercontrol.dto.request.PersonRequestDTO;
-import com.dio.sawcunha.beercontrol.dto.response.BeerResponseDTO;
 import com.dio.sawcunha.beercontrol.dto.response.PersonResponseDTO;
-import com.dio.sawcunha.beercontrol.entity.Beer;
 import com.dio.sawcunha.beercontrol.entity.Person;
 import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
 import org.mapstruct.Mapper;
@@ -19,7 +17,7 @@ public interface PersonMapper {
     PersonResponseDTO toDTO(Person person);
     List<PersonResponseDTO> toDTOs(List<Person> people);
 
-    @Mapping(source = "beers", target = "data")
+    @Mapping(source = "persons", target = "data")
     default BeerControlResponse<List<PersonResponseDTO>> toResponseDTOs(List<Person> persons){
         return BeerControlResponse.<List<PersonResponseDTO>>builder()
                 .data(persons
@@ -30,7 +28,7 @@ public interface PersonMapper {
                 .build();
     }
 
-    @Mapping(source = "Person", target = "data")
+    @Mapping(source = "person", target = "data")
     BeerControlResponse<PersonResponseDTO> toResponseDTO(Person person);
 
 }

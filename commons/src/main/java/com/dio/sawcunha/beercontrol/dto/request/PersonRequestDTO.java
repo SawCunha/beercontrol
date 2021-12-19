@@ -29,13 +29,6 @@ public class PersonRequestDTO {
     @NotNull
     private LocalDate birthday;
     @NotNull
-    @NotEmpty
-    @Email(message = "The e-mail informed must be valid")
-    private String email;
-    @NotNull
-    @NotEmpty
-    private String description;
-    @NotNull
     private eSex sex;
 
     @Valid

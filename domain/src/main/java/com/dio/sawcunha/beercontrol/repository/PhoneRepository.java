@@ -9,14 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone, Long> {
 
-    @Query("SELECT NEW com.dio.sawcunha.beercontrol.dto.response.PhoneDTO(p.id,p.prefixInternattional,p.prefixNational,p.number) FROM Phone p WHERE p.person.id = :idPerson")
+    @Query("SELECT NEW com.dio.sawcunha.beercontrol.dto.response.PhoneResponseDTO(p.id,p.prefixInternattional,p.prefixNational,p.numberPhone) FROM Phone p WHERE p.person.id = :idPerson")
     Optional<List<PhoneResponseDTO>> findByIDPersonDTO(Long idPerson);
 
-    @Query("SELECT NEW com.dio.sawcunha.beercontrol.dto.response.PhoneDTO(p.id,p.prefixInternattional,p.prefixNational,p.number) FROM Phone p WHERE p.id = :id")
+    @Query("SELECT NEW com.dio.sawcunha.beercontrol.dto.response.PhoneResponseDTO(p.id,p.prefixInternattional,p.prefixNational,p.numberPhone) FROM Phone p WHERE p.id = :id")
     Optional<PhoneResponseDTO> findByIDDTO(Long id);
 
     @Query("SELECT p FROM Phone p WHERE p.person.id = :idPerson")

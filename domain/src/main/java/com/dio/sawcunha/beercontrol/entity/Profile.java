@@ -28,7 +28,7 @@ public class Profile {
 
     @Column(name = "PERMISSIONS")
     @ManyToMany
-    @JoinTable(name="PROFILE_PERMISSIONS", joinColumns=
+    @JoinTable(name="BIC_PROFILE_PERMISSIONS", joinColumns=
             {@JoinColumn(name="PROFILE_ID")}, inverseJoinColumns=
             {@JoinColumn(name="PERMISSIONS_ID")})
     private Set<Permissions> permissions;

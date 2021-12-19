@@ -1,9 +1,7 @@
 package com.dio.sawcunha.beercontrol.service;
 
 
-import com.dio.sawcunha.beercontrol.dto.request.AddressRequestDTO;
 import com.dio.sawcunha.beercontrol.dto.request.PersonRequestDTO;
-import com.dio.sawcunha.beercontrol.dto.response.BeerResponseDTO;
 import com.dio.sawcunha.beercontrol.dto.response.PersonResponseDTO;
 import com.dio.sawcunha.beercontrol.entity.Person;
 import com.dio.sawcunha.beercontrol.exception.error.*;
@@ -16,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +45,7 @@ public class PersonImplementationService implements PersonService {
     }
 
     @Transactional
-    public BeerControlResponse<PersonResponseDTO> save(PersonRequestDTO personDTO) throws PersonAlreadyRegistersCpfException {
+    public BeerControlResponse<PersonResponseDTO> save(@Valid PersonRequestDTO personDTO) throws PersonAlreadyRegistersCpfException {
         Optional<Person> personOptional = personRepository.findByCpf(personDTO.getCpf());
         if(personOptional.isPresent()){
             throw new PersonAlreadyRegistersCpfException();
@@ -58,7 +57,7 @@ public class PersonImplementationService implements PersonService {
     }
 
     @Override
-    public BeerControlResponse<?> update(PersonRequestDTO personRequestDTOTO) throws Exception {
+    public BeerControlResponse<?> update(@Valid PersonRequestDTO personRequestDTOTO) throws Exception {
         if(personRepository.existsById(personRequestDTOTO.getId())) throw new PersonNotFoundIDException();
         Person person = personMapper.toModel(personRequestDTOTO);
         person.getAddresses().forEach(address -> address.setPerson(person));
@@ -67,7 +66,7 @@ public class PersonImplementationService implements PersonService {
     }
 
     @Transactional
-    public BeerControlResponse<PersonResponseDTO> update(Long id, PersonRequestDTO personDTO) throws ExceptionPeopleManager {
+    public BeerControlResponse<PersonResponseDTO> update(Long id, @Valid PersonRequestDTO personDTO) throws ExceptionPeopleManager {
         validIDPathAndBody(id,personDTO);
         if(personRepository.existsById(id)) throw new PersonNotFoundIDException();
         personDTO.setId(id);

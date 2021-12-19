@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertDefaultUser
+      author: SamuelCunha
+      changes:
+        - insert:
+            dbms: 'h2,  mysql, postgresql'
+            schemaName: public
+            tableName: BIC_PERMISSIONS
+            columns:
+              - column:
+                  name: LEVEL_ROLE_TYPE
+                  value: 'READ_WRITE'
+              - column:
+                  name: PERMISSION
+                  value: 'PHONE'
+        - insert:
+            dbms: 'h2,  mysql, postgresql'
+            schemaName: public
+            tableName: BIC_PERMISSIONS
+            columns:
+              - column:
+                  name: LEVEL_ROLE_TYPE
+                  value: 'READ'
+              - column:
+                  name: PERMISSION
+                  value: 'PHONE'

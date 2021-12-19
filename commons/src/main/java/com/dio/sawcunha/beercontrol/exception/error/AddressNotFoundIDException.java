@@ -1,6 +1,6 @@
 package com.dio.sawcunha.beercontrol.exception.error;
 
-import com.dio.sawcunha.peoplemanager.exceptionmanager.enums.eMessageError;
+import com.dio.sawcunha.beercontrol.exception.enums.eMessageError;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
