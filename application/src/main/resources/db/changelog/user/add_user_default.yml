@@ -1,0 +1,150 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertDefaultUser
+      author: SamuelCunha
+      changes:
+        - insert:
+            dbms: 'h2,  mysql, postgresql'
+            tableName: BIC_PROFILE
+            columns:
+              - column:
+                  name: PROFILE_ID
+                  value: '1'
+              - column:
+                  name: ACTIVE
+                  value: '1'
+              - column:
+                  name: DESCRIPTION
+                  value: 'Administrator'
+        - insert:
+            dbms: 'h2,  mysql, postgresql'
+            tableName: BIC_PERSON
+            columns:
+              - column:
+                  name: PERSON_ID
+                  value: '1'
+              - column:
+                  name: BIRTHDAY
+                  value: ${now}
+              - column:
+                  name: TAX_IDENTIFIER
+                  value: '111.111.111-11'
+              - column:
+                  name: NAME
+                  value: 'Beer Inventory Control'
+              - column:
+                  name: SURNAME
+                  value: 'BIC'
+              - column:
+                  name: GENDER
+                  value: 'MALE'
+        - insert:
+            dbms: 'h2,  mysql, postgresql'
+            
+            tableName: BIC_PROFILE_PERMISSIONS
+            columns:
+              - column:
+                  name: PROFILE_ID
+                  value: '1'
+              - column:
+                  name: PERMISSIONS_ID
+                  value: '1'
+        -  insert:
+            dbms: 'h2,  mysql, postgresql'
+            
+            tableName: BIC_PROFILE_PERMISSIONS
+            columns:
+              - column:
+                  name: PROFILE_ID
+                  value: '1'
+              - column:
+                  name: PERMISSIONS_ID
+                  value: '2'
+        -  insert:
+             dbms: 'h2,  mysql, postgresql'
+             
+             tableName: BIC_PROFILE_PERMISSIONS
+             columns:
+               - column:
+                   name: PROFILE_ID
+                   value: '1'
+               - column:
+                   name: PERMISSIONS_ID
+                   value: '3'
+        -  insert:
+             dbms: 'h2,  mysql, postgresql'
+             
+             tableName: BIC_PROFILE_PERMISSIONS
+             columns:
+               - column:
+                   name: PROFILE_ID
+                   value: '1'
+               - column:
+                   name: PERMISSIONS_ID
+                   value: '4'
+        -  insert:
+             dbms: 'h2,  mysql, postgresql'
+             
+             tableName: BIC_PROFILE_PERMISSIONS
+             columns:
+               - column:
+                   name: PROFILE_ID
+                   value: '1'
+               - column:
+                   name: PERMISSIONS_ID
+                   value: '5'
+        -  insert:
+             dbms: 'h2,  mysql, postgresql'
+             
+             tableName: BIC_PROFILE_PERMISSIONS
+             columns:
+               - column:
+                   name: PROFILE_ID
+                   value: '1'
+               - column:
+                   name: PERMISSIONS_ID
+                   value: '6'
+        -  insert:
+            dbms: 'h2,  mysql, postgresql'
+            
+            tableName: BIC_USER
+            columns:
+              - column:
+                  name: USER_ID
+                  value: '1'
+              - column:
+                  name: LOGIN
+                  value: admin
+              - column:
+                  name: PASSWORD
+                  value: 57160E24E807300D1B7D10F90067FC8C
+              - column:
+                  name: BLOCKED
+                  value: '0'
+              - column:
+                  name: CREATED
+                  value: ${now}
+              - column:
+                  name: EMAIL
+                  value: 'bic@bic.com'
+              - column:
+                  name: FIRST_ACCESS
+                  value: '0'
+              - column:
+                  name: LAST_ACESS
+                  value: ${now}
+              - column:
+                  name: NUMBER_ATTEMPTS
+                  value: '0'
+              - column:
+                  name: USER_STATUS
+                  value: 'ACTIVE'
+              - column:
+                  name: USER_TYPE
+                  value: 'SUPER_ADMIN'
+              - column:
+                  name: PERSON_ID
+                  value: '1'
+              - column:
+                  name: PROFILE_ID
+                  value: '1'

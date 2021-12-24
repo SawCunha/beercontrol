@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,18 +23,21 @@ public class MovementController {
 
     @GetMapping("/identifier/{identifier}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('MOVEMENT:READ_WRITE','MOVEMENT:READ')")
     public BeerControlResponse<MovementResponseDTO> findByIdentifier(@PathVariable(name = "identifier") final UUID identifier) throws Exception {
         return movementService.findByIdentifier(identifier);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAnyRole('MOVEMENT:READ_WRITE')")
     public BeerControlResponse<MovementResponseDTO> save(@RequestBody @Valid final MovementRequestDTO movementRequestDTO) throws Exception {
         return movementService.save(movementRequestDTO);
     }
 
     @PutMapping("/identifier/{identifier}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('MOVEMENT:READ_WRITE')")
     public BeerControlResponse<MovementResponseDTO> update(@RequestBody final MovementRequestDTO movementRequestDTO,
                                                            @PathVariable(name = "identifier") final UUID identifier) throws Exception {
         return movementService.update(identifier, movementRequestDTO);
@@ -41,6 +45,7 @@ public class MovementController {
 
     @DeleteMapping("/{id}/identifier/{identifier}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAnyRole('MOVEMENT:READ_WRITE')")
     public void delete(@PathVariable(name = "id") final Long id, @PathVariable(name = "identifier") final UUID identifier) throws Exception {
         movementService.delete(identifier, id);
     }

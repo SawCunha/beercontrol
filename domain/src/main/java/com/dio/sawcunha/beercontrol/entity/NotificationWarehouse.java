@@ -12,7 +12,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "NOTIFICATION_WAREHOUSE", indexes = {
+@Table(name = "BIC_NOTIFICATION_WAREHOUSE", indexes = {
         @Index(name = "IX_NOTIFICATION_WAREHOUSE", columnList = "NOTIFICATION_STATUS, WAREHOUSE_ID"),
         @Index(name = "IX_WAREHOUSE_ID_NW", columnList = "WAREHOUSE_ID"),
         @Index(name = "IX_MOVEMENT_ID_NW", columnList = "MOVEMENT_ID"),

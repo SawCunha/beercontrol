@@ -3,33 +3,9 @@ server:
   servlet:
     context-path: /beercontrol
 
-springdoc:
-  api-docs:
-    path: /api_beer_control
-  swagger-ui:
-    path: /swagger_beer_control.html
-  operationsSorter: method
-
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-        web-admin-password: beercontrol
-        trace: false
-      path: /database_config
-  jpa:
-    show-sql: false
-    properties:
-      hibernate:
-        enable_lazy_load_no_trans: true
-    database-platform: org.hibernate.dialect.H2Dialect
+  profiles:
+    default: h2
 
 task:
   corePoolSize: 4
@@ -39,12 +15,25 @@ task:
 
 application:
   description: Projeto desenvolvido no Bootcamp GFT Start ## 2Java
-  version: 0.0.1-BIC
+  version: 1.0.0  7-BIC
   msg_success: Moving was successfully carried out to the warehouse.
+  encrypt_password: BIC
 
 scheduling:
   default: 30000
   notification_time: 30000
   movement_time: 30000
+
 logging:
   exception-conversion-word:
+  level:
+    liquibase: INFO
+
+liquibase:
+  change-log: classpath:db.changelog-master.yaml
+
+jwt:
+  secret: usersecretforjwtauthenticateoratoroeuaroupadoreideromalalalameudeuscomoessabencaodechave
+  valid: 60 #Define em Minutos o tempo valido do Token
+
+
