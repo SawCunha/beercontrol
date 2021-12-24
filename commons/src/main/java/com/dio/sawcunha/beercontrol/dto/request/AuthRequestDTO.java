@@ -19,7 +19,5 @@ public class AuthRequestDTO {
     private String login;
     @NotEmpty
     private String password;
-    @NotEmpty
-    private String passwordEncrypt;
 
 }

@@ -4,7 +4,7 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_PERSON
             dbms:  'h2,  mysql, postgresql'
             columns:
@@ -51,7 +51,7 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_ADDRESS
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -133,13 +133,13 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERSON_ID
                     referencedTableName: BIC_PERSON
-                    referencedTableSchemaName: public
+                    
   - changeSet:
       id: create_BIC_PHONE
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_PHONE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -179,13 +179,13 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERSON_ID
                     referencedTableName: BIC_PERSON
-                    referencedTableSchemaName: public
+                    
   - changeSet:
       id: create_BIC_PROFILE
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_PROFILE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -200,7 +200,7 @@ databaseChangeLog:
               - column:
                   name: ACTIVE
                   autoIncrement: false
-                  type: TINYINT
+                  type: ${typeBoolean}
                   defaultValue: '1'
                   constraints:
                     nullable: false
@@ -215,7 +215,7 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_PERMISSIONS
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -244,7 +244,7 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_PROFILE_PERMISSIONS
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -258,7 +258,7 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PROFILE_ID
                     referencedTableName: BIC_PROFILE
-                    referencedTableSchemaName: public
+                    
               - column:
                   name: PERMISSIONS_ID
                   autoIncrement: false
@@ -269,7 +269,7 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERMISSIONS_ID
                     referencedTableName: BIC_PERMISSIONS
-                    referencedTableSchemaName: public
+                    
         - addPrimaryKey:
             columnNames: PROFILE_ID, PERMISSIONS_ID
             constraintName: PK_BIC_PROFILE_PERMISSIONS
@@ -280,7 +280,7 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_BEER
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -333,7 +333,7 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_USER
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -348,7 +348,7 @@ databaseChangeLog:
               - column:
                   name: BLOCKED
                   autoIncrement: false
-                  type: TINYINT
+                  type: ${typeBoolean}
                   defaultValue: '1'
                   constraints:
                     nullable: false
@@ -367,7 +367,7 @@ databaseChangeLog:
               - column:
                   name: FIRST_ACCESS
                   autoIncrement: false
-                  type: TINYINT
+                  type: ${typeBoolean}
                   defaultValue: '1'
                   constraints:
                     nullable: false
@@ -408,6 +408,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: IDENTIFIER
+                  autoIncrement: false
+                  type: ${UUIDType}
+                  constraints:
+                    nullable: true
+              - column:
                   name: PERSON_ID
                   autoIncrement: false
                   type: BIGINT
@@ -417,7 +423,7 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERSON_ID
                     referencedTableName: BIC_PERSON
-                    referencedTableSchemaName: public
+                    
               - column:
                   name: PROFILE_ID
                   autoIncrement: false
@@ -428,13 +434,13 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PROFILE_ID
                     referencedTableName: BIC_PROFILE
-                    referencedTableSchemaName: public
+                    
   - changeSet:
       id: create_BIC_WAREHOUSE
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_WAREHOUSE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -480,13 +486,13 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: BEER_ID
                     referencedTableName: BIC_BEER
-                    referencedTableSchemaName: public
+                    
   - changeSet:
       id: create_BIC_MOVEMENT
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_MOVEMENT
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -501,7 +507,7 @@ databaseChangeLog:
               - column:
                   name: AUTOMATIC
                   autoIncrement: false
-                  type: TINYINT
+                  type: ${typeBoolean}
                   defaultValue: '0'
                   constraints:
                     nullable: false
@@ -563,13 +569,13 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: WAREHOUSE_ID
                     referencedTableName: BIC_WAREHOUSE
-                    referencedTableSchemaName: public
+                    
   - changeSet:
       id: create_BIC_NOTIFICATION_WAREHOUSE
       author: SamuelCunha
       changes:
         - createTable:
-            schemaName: public
+            
             tableName: BIC_NOTIFICATION_WAREHOUSE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -608,7 +614,7 @@ databaseChangeLog:
               - column:
                   name: SUCCESS
                   autoIncrement: false
-                  type: TINYINT
+                  type: ${typeBoolean}
                   constraints:
                     nullable: true
               - column:
@@ -627,7 +633,7 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: MOVEMENT_ID
                     referencedTableName: BIC_MOVEMENT
-                    referencedTableSchemaName: public
+                    
               - column:
                   name: WAREHOUSE_ID
                   autoIncrement: false
@@ -638,4 +644,4 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: WAREHOUSE_ID
                     referencedTableName: BIC_WAREHOUSE
-                    referencedTableSchemaName: public
+                    

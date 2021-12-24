@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class
                 )
                 .exceptionHandling().accessDeniedHandler(accessDeniedExceptionHandler);
+        httpSecurity.headers().frameOptions().disable();
     }
 
     @Bean

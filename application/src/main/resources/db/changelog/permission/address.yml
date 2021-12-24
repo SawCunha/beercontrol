@@ -5,7 +5,7 @@ databaseChangeLog:
       changes:
         - insert:
             dbms: 'h2,  mysql, postgresql'
-            schemaName: public
+            
             tableName: BIC_PERMISSIONS
             columns:
               - column:
@@ -16,7 +16,7 @@ databaseChangeLog:
                   value: 'ADDRESS'
         - insert:
             dbms: 'h2,  mysql, postgresql'
-            schemaName: public
+            
             tableName: BIC_PERMISSIONS
             columns:
               - column:

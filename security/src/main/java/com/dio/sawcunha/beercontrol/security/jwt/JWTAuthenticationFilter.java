@@ -1,7 +1,9 @@
 package com.dio.sawcunha.beercontrol.security.jwt;
 
+import com.dio.sawcunha.beercontrol.enums.eJWTErro;
 import com.dio.sawcunha.beercontrol.exception.model.ExceptionResponse;
 import com.dio.sawcunha.beercontrol.security.jwt.dto.JwtDTO;
+import com.dio.sawcunha.beercontrol.specification.service.UserService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
@@ -27,6 +29,9 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
     @Autowired
     private TokenAuthenticationService authenticationService;
 
+    @Autowired
+    private UserService userService;
+
     private final Gson gson = new Gson();
 
     @Override
@@ -41,10 +46,10 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
             JwtDTO jwtValidation = authenticationService
                     .getAuthentication(request);
 
-            if (jwtValidation.isValid()) {
+            if (jwtValidation.isValid() && userService.validIdentifier(jwtValidation.getIdentifier())) {
                 jwtValidation.getAuthenticationOptional().ifPresent(authentication::set);
             } else {
-                setUnauthorizedResponse(response,jwtValidation.getJwtErro().getCod());
+                setUnauthorizedResponse(response,jwtValidation.getJwtErro());
                 return;
             }
         }
@@ -53,10 +58,10 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
         filterChain.doFilter(request, response);
     }
 
-    public void setUnauthorizedResponse(HttpServletResponse response, int identificador) {
+    public void setUnauthorizedResponse(HttpServletResponse response, eJWTErro error) {
         ExceptionResponse exceptionResponse = ExceptionResponse.builder()
-                .codErro(identificador)
-                .message("Sem acesso")
+                .codErro(error.getCod())
+                .message(error.getMessage())
                 .build();
         response.setStatus(401);
         response.setContentType("application/json");

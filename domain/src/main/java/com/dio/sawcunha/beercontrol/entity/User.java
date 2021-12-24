@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -54,6 +55,9 @@ public class User {
 
     @Column(name = "NUMBER_ATTEMPTS")
     private int numberAttempts;
+
+    @Column(name = "IDENTIFIER")
+    private UUID identifier;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PERSON_ID", foreignKey = @ForeignKey(name = "FK_USER_PERSON"))

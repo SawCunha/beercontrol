@@ -10,6 +10,7 @@ public class JwtDTO {
     private Optional<Authentication> authenticationOptional;
     private boolean valid;
     private eJWTErro jwtErro;
+    private String identifier;
 
     public JwtDTO() {
         this.authenticationOptional = Optional.empty();
@@ -33,6 +34,18 @@ public class JwtDTO {
 
     public eJWTErro getJwtErro() {
         return jwtErro;
+    }
+
+    public void setAuthenticationOptional(Optional<Authentication> authenticationOptional) {
+        this.authenticationOptional = authenticationOptional;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public void setJwtErro(eJWTErro jwtErro) {

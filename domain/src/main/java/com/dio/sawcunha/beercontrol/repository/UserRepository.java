@@ -8,14 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByLoginAndPassword(String login, String password);
+    Optional<User> findByLoginAndIdentifier(String login, UUID identifier);
 
     @Query(" SELECT profile.permissions FROM User user INNER JOIN Profile profile ON user.profile = profile " +
            " WHERE user.login = :login")
     Set<Permissions> findPermissionsByLogin(String login);
 
+    boolean existsByIdentifier(UUID identifier);
 }

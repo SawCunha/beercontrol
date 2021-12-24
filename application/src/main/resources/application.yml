@@ -4,20 +4,8 @@ server:
     context-path: /beercontrol
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: bicDev2021!
-  jpa:
-    show-sql: false
-    properties:
-      hibernate:
-        enable_lazy_load_no_trans: true
-        ddl-auto: none
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        naming:
-          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
-          physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+  profiles:
+    default: h2
 
 task:
   corePoolSize: 4
@@ -27,7 +15,7 @@ task:
 
 application:
   description: Projeto desenvolvido no Bootcamp GFT Start ## 2Java
-  version: 0.0.1-BIC
+  version: 1.0.0  7-BIC
   msg_success: Moving was successfully carried out to the warehouse.
   encrypt_password: BIC
 

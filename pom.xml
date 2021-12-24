@@ -28,7 +28,7 @@
         <gson.version>2.8.9</gson.version>
         <spring.version>2.6.1</spring.version>
         <thymeleaf.version>3.0.13.RELEASE</thymeleaf.version>
-        <h2database.version>2.0.202</h2database.version>
+        <h2database.version>2.0.204</h2database.version>
         <swagger.version>2.9.2</swagger.version>
         <javafaker.version>1.0.2</javafaker.version>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
@@ -341,12 +341,17 @@
             <dependency>
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
-                <version>2.8.9</version>
+                <version>${gson.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.fusionauth</groupId>
                 <artifactId>fusionauth-jwt</artifactId>
                 <version>5.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.25</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

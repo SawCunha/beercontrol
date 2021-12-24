@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +27,13 @@ public class AuthenticationController {
     @Cacheable("auth")
     public BeerControlResponse<AuthResponseDTO> login(@RequestBody @Valid final AuthRequestDTO authRequestDTO) throws Exception {
         return authenticationService.login(authRequestDTO);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Void> login(@RequestHeader("Authorization") String token) throws Exception {
+        authenticationService.logout(token);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
 }

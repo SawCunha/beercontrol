@@ -27,6 +27,8 @@ public enum eMessageError {
     MOVEMENT_NOT_FOUND(402,"No movement with the given ID was found."),
     NOT_DELETE_MOVEMENT(403,"It is not possible to delete a move that is not in Pending Status."),
 
+    USER_NOT_FOUND(500,"Incorrect user or password "),
+
     ENUM_ERROR(900,"Allowed types for field '%s' are as follows: %s."),
 
     PERSON_NOT_FOUND_CPF(1,"The person of this CPF was not found."),

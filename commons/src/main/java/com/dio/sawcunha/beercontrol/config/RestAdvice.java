@@ -6,13 +6,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
+import java.util.Objects;
 
 @RestControllerAdvice
 public class RestAdvice implements ResponseBodyAdvice<BeerControlResponse<Object>> {
@@ -23,17 +23,19 @@ public class RestAdvice implements ResponseBodyAdvice<BeerControlResponse<Object
     }
 
     @Override
-    public BeerControlResponse<Object> beforeBodyWrite(@NonNull BeerControlResponse<Object> body, MethodParameter returnType,
+    public BeerControlResponse<Object> beforeBodyWrite(BeerControlResponse<Object> body, MethodParameter returnType,
                                                MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                                ServerHttpRequest request, ServerHttpResponse response) {
-        long startTime = getStartTime(response);
-        long duration = System.currentTimeMillis() - startTime;
-        Duration diff = Duration.ofMillis(duration);
-        body.setDuration(String.format("%02d:%02d:%02d.%03d",
-                diff.toHours(),
-                diff.toMinutesPart(),
-                diff.toSecondsPart(),
-                diff.toMillis()));
+        if(Objects.nonNull(body)) {
+            long startTime = getStartTime(response);
+            long duration = System.currentTimeMillis() - startTime;
+            Duration diff = Duration.ofMillis(duration);
+            body.setDuration(String.format("%02d:%02d:%02d.%03d",
+                    diff.toHours(),
+                    diff.toMinutesPart(),
+                    diff.toSecondsPart(),
+                    diff.toMillis()));
+        }
         return body;
     }
 

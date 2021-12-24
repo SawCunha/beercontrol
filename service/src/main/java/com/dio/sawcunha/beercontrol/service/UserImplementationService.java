@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,5 +21,11 @@ public class UserImplementationService implements UserService {
     public Set<String> permissions(String login) {
         Set<Permissions> permissions = userRepository.findPermissionsByLogin(login);
         return permissions.stream().map(Permissions::toString).collect(Collectors.toSet());
+    }
+
+    @Override
+    public boolean validIdentifier(String identifier) {
+        UUID uuid = UUID.fromString(identifier);
+        return userRepository.existsByIdentifier(uuid);
     }
 }

@@ -7,5 +7,5 @@ import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
 public interface AuthenticationService {
 
     BeerControlResponse<AuthResponseDTO> login(AuthRequestDTO authDTO) throws Exception;
-
+    void logout(String token) throws Exception;
 }

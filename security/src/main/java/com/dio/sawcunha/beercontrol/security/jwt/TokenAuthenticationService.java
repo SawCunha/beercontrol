@@ -31,14 +31,13 @@ public class TokenAuthenticationService {
                 if (Objects.nonNull(jwt)) {
                     jwtValidation.setValid(true);
                     Set<String> permissions = (Set<String>) jwt.getObject("permissions");
-
+                    jwtValidation.setIdentifier(jwt.uniqueId);
                     jwtValidation.setAuthenticationOptional(
                             new UsernamePasswordAuthenticationToken(
                                     jwt.subject, null,
                                     permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toSet())
                             )
                     );
-                    jwtValidation.getAuthenticationOptional().ifPresent(authentication -> System.out.println("AAA: "  + authentication.getAuthorities()));
                 }
             }
         } else {
