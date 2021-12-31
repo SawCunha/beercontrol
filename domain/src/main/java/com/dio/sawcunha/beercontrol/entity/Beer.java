@@ -1,14 +1,13 @@
 package com.dio.sawcunha.beercontrol.entity;
 
 import com.dio.sawcunha.beercontrol.enums.eBeerType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "BIC_BEER")
@@ -16,8 +15,7 @@ import java.time.LocalDateTime;
 public class Beer {
 
     @Id
-    @SequenceGenerator(name="seq_beer",sequenceName="seq_beer_id")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_beer")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "BEER_ID")
     private Long id;
 

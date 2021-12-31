@@ -18,7 +18,7 @@ public class AccessDeniedExceptionHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException ex) {
         ExceptionResponse exceptionResponse = ExceptionResponse.builder()
-                .codErro(401)
+                .codeError(""+401)
                 .message("Sem acesso")
                 .build();
 

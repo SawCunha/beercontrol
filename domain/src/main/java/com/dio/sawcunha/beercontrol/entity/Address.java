@@ -1,13 +1,11 @@
 package com.dio.sawcunha.beercontrol.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,11 +15,11 @@ public class Address {
 
     @Id
     @Column(name = "ADDRESS_ID")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_beer")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PERSON_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_Person_A"))
+    @JoinColumn(name = "PERSON_ID", nullable = false)
     private Person person;
 
     @Column(name = "ZIP_CODE")

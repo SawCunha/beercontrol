@@ -1,10 +1,10 @@
 package com.dio.sawcunha.beercontrol.service;
 
-import com.dio.sawcunha.beercontrol.config.BeerControlProperties;
 import com.dio.sawcunha.beercontrol.dto.request.WarehouseRequestDTO;
 import com.dio.sawcunha.beercontrol.dto.response.WarehouseResponseDTO;
 import com.dio.sawcunha.beercontrol.entity.Beer;
 import com.dio.sawcunha.beercontrol.entity.Warehouse;
+import com.dio.sawcunha.beercontrol.enums.eMessageNotification;
 import com.dio.sawcunha.beercontrol.exception.error.BeerHasWarehouseException;
 import com.dio.sawcunha.beercontrol.exception.error.BeerNotFoundException;
 import com.dio.sawcunha.beercontrol.exception.error.QtdMinimumEqualOrGreaterMaximun;
@@ -18,7 +18,6 @@ import com.dio.sawcunha.beercontrol.specification.validation.ValidUpdateEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +34,7 @@ public class WarehouseImplementationService implements WarehouseService {
     private final WarehouseMapper warehouseMapper;
     private final ValidUpdateEntity<Warehouse, WarehouseRequestDTO> validUpdateEntity;
     private final NotificationImplementationWarehouseService notificationImplementationWarehouseService;
-    private final BeerControlProperties beerControlProperties;
+
 
     @Override
     @Transactional(readOnly = true)
@@ -98,6 +97,6 @@ public class WarehouseImplementationService implements WarehouseService {
     @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
     public void checkWarehouse() {
         warehouseRepository.findWarehouseByQuantityGreaterThanQuantityMax().forEach(warehouse ->
-                notificationImplementationWarehouseService.createNotification(warehouse,beerControlProperties.getMsg_warehouse_max_expect(),null));
+                notificationImplementationWarehouseService.createNotification(warehouse, eMessageNotification.AMOUNT_BEER_EXCEEDS_MAXIMUM.getCode()));
     }
 }

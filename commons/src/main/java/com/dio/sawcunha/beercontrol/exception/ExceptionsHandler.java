@@ -4,6 +4,8 @@ import com.dio.sawcunha.beercontrol.exception.enums.eMessageError;
 import com.dio.sawcunha.beercontrol.exception.error.*;
 import com.dio.sawcunha.beercontrol.exception.model.AttributeNotValid;
 import com.dio.sawcunha.beercontrol.exception.model.ExceptionResponse;
+import com.dio.sawcunha.beercontrol.utils.locale.LocaleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,134 +27,105 @@ import java.util.regex.Pattern;
 @ControllerAdvice
 public class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
+    @Autowired
+    private LocaleUtils localeUtils;
+
+    private ExceptionResponse createResponse(String code, String... args){
+        return ExceptionResponse.builder()
+                .codeError(code)
+                .message(localeUtils.getMessage(code, args))
+                .build();
+    }
+
     @ExceptionHandler(IdentifierRepeatedException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(IdentifierRepeatedException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(NameRepeatedException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(NameRepeatedException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(BeerNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ExceptionResponse handleSecurity(BeerNotFoundException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(WarehouseNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ExceptionResponse handleSecurity(WarehouseNotFoundException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(MovementNotFoundIdentifierException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ExceptionResponse handleSecurity(MovementNotFoundIdentifierException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(MovementNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ExceptionResponse handleSecurity(MovementNotFoundException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(BeerHasWarehouseDeleteException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(BeerHasWarehouseDeleteException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(QtdMinimumEqualOrGreaterMaximun.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(QtdMinimumEqualOrGreaterMaximun exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(NotDeleteWarehouseException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(NotDeleteWarehouseException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(BeerHasWarehouseException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(BeerHasWarehouseException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(NotUpdateMovementException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(NotUpdateMovementException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
-    @ExceptionHandler(QtdMoveGreaterZero.class)
+    @ExceptionHandler(QtdMoveGreaterZeroException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected ExceptionResponse handleSecurity(QtdMoveGreaterZero exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+    protected ExceptionResponse handleSecurity(QtdMoveGreaterZeroException exception){
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(NotDeleteMovementException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ExceptionResponse handleSecurity(NotDeleteMovementException exception){
-        return ExceptionResponse.builder()
-                .codErro(exception.getCode())
-                .message(exception.getMessage())
-                .build();
+        return createResponse(exception.getCode());
     }
 
     @Override
@@ -172,10 +145,12 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
             typesEnum = matcher.group();
         }
 
+        String message = localeUtils.getMessage(eMessageError.ATTRIBUTE_NOT_VALID.getCode(), field, typesEnum);
+
         return ResponseEntity.status(status).body(
                 ExceptionResponse.builder()
-                                    .codErro(eMessageError.ENUM_ERROR.getCodErro())
-                                    .message(String.format(eMessageError.ENUM_ERROR.getMessage(),field,typesEnum))
+                                    .codeError(eMessageError.ENUM_ERROR.getCode())
+                                    .message(message)
                         .build()
         );
     }
@@ -185,48 +160,92 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
         List<AttributeNotValid> validationErrorsDTO = new ArrayList<>();
 
-        ex.getBindingResult().getFieldErrors().forEach(e -> validationErrorsDTO.add(new AttributeNotValid(e.getField(), e.getDefaultMessage())));
+        ex.getBindingResult().getFieldErrors()
+                .forEach(
+                        e -> validationErrorsDTO.add(
+                                new AttributeNotValid(
+                                        e.getField(),
+                                        localeUtils.getMessage(e.getDefaultMessage(), e.getField())
+                                )
+                        )
+                );
+
+        String message = localeUtils.getMessage(eMessageError.ATTRIBUTE_NOT_VALID.getCode(), ((ServletWebRequest)request).getRequest().getRequestURI());
 
         return ResponseEntity.status(status).body(
-                ExceptionResponse.builder().codErro(eMessageError.ATTRIBUTE_NOT_VALID.getCodErro())
-                        .message(String.format(eMessageError.ATTRIBUTE_NOT_VALID.getMessage(),((ServletWebRequest)request).getRequest().getRequestURI()))
+                ExceptionResponse.builder().codeError(eMessageError.ATTRIBUTE_NOT_VALID.getCode())
+                        .message(message)
                         .validationErrors(validationErrorsDTO).build()
         );
     }
 
-    @ExceptionHandler(PersonNotFoundCPFException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(PersonNotFoundCPFException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
+    @ExceptionHandler(PersonNotFoundTaxIdentifierException.class)
+    protected ExceptionResponse handleSecurity(PersonNotFoundTaxIdentifierException exception){
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(PersonNotFoundIDException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(PersonNotFoundIDException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(PersonNotFoundIDException exception){
+        return createResponse(exception.getCode());
     }
 
-    @ExceptionHandler(NotValidException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(NotValidException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
-    }
-
-    @ExceptionHandler(PersonAlreadyRegistersCpfException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(PersonAlreadyRegistersCpfException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
+    @ExceptionHandler(PersonAlreadyRegistersTaxIdentifierException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(PersonAlreadyRegistersTaxIdentifierException exception){
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(PhoneNotFoundIDException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(PhoneNotFoundIDException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(PhoneNotFoundIDException exception){
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(AddressNotFoundIDException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(AddressNotFoundIDException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(AddressNotFoundIDException exception){
+        return createResponse(exception.getCode());
     }
 
     @ExceptionHandler(IDPathDifferentBodyException.class)
-    protected ResponseEntity<ExceptionResponse> handleSecurity(IDPathDifferentBodyException e){
-        return ResponseEntity.badRequest().body(e.createResponse());
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(IDPathDifferentBodyException exception){
+        return createResponse(exception.getCode());
     }
+
+    @ExceptionHandler(UserOrPasswordInvalidException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(UserOrPasswordInvalidException exception){
+        return createResponse(exception.getCode());
+    }
+
+    @ExceptionHandler(TokenJWTException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(TokenJWTException exception){
+        return createResponse(exception.getCode());
+    }
+
+    @ExceptionHandler(BeerControlGenericException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(BeerControlGenericException exception){
+        return createResponse(exception.getCode());
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ExceptionResponse handleSecurity(UserNotFoundException exception){
+        return createResponse(exception.getCode());
+    }
+
 
 }

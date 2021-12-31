@@ -17,13 +17,13 @@ import javax.validation.constraints.Positive;
 public class MovementRequestDTO {
 
     private Long id;
-    @NotNull(message = "It is necessary to inform the type of movement in the warehouse.")
+    @NotNull(message = "BICV-004")
     private eMovementType movementType;
-    @NotNull(message = "It is necessary to inform a valid warehouse id.")
-    @Positive(message = "It is necessary to inform a valid warehouse id.")
+    @NotNull(message = "BICV-005")
+    @Positive(message = "BICV-005")
     private Long idWarehouse;
-    @NotNull(message = "The quantity must be greater than zero to carry out the movement.")
-    @Positive(message = "The quantity must be greater than zero to carry out the movement.")
+    @NotNull(message = "BICV-006")
+    @Positive(message = "BICV-006")
     private Long quantity;
     private boolean automatic;
 

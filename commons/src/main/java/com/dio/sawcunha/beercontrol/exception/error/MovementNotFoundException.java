@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class MovementNotFoundException extends Exception{
 
-    private final int code;
+    private final String code;
     public MovementNotFoundException() {
-        super(eMessageError.MOVEMENT_NOT_FOUND.getMessage());
-        this.code = eMessageError.MOVEMENT_NOT_FOUND.getCodErro();
+        super();
+        this.code = eMessageError.MOVEMENT_NOT_FOUND.getCode();
     }
 }

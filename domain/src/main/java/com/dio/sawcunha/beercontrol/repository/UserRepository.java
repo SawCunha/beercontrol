@@ -2,6 +2,7 @@ package com.dio.sawcunha.beercontrol.repository;
 
 import com.dio.sawcunha.beercontrol.entity.Permissions;
 import com.dio.sawcunha.beercontrol.entity.User;
+import com.dio.sawcunha.beercontrol.enums.eUserStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
            " WHERE user.login = :login")
     Set<Permissions> findPermissionsByLogin(String login);
 
-    boolean existsByIdentifier(UUID identifier);
+    boolean existsByIdentifierAndUserStatus(UUID identifier, eUserStatus userStatus);
 }

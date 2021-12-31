@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class WarehouseNotMovementException extends Exception{
 
-    private final int code;
+    private final String code;
     public WarehouseNotMovementException() {
-        super(eMessageError.WAREHOUSE_NOT_MOVEMENT.getMessage());
-        this.code = eMessageError.WAREHOUSE_NOT_MOVEMENT.getCodErro();
+        super();
+        this.code = eMessageError.WAREHOUSE_NOT_MOVEMENT.getCode();
     }
 }

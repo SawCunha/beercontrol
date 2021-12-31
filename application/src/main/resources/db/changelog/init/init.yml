@@ -1,5 +1,5 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/property.yml
+      file: db/changelog/init/property.yml
   - include:
       file: db/changelog/init/create_db.yml

@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class NotDeleteWarehouseException extends Exception{
 
-    private final int code;
+    private final String code;
     public NotDeleteWarehouseException() {
-        super(eMessageError.NOT_DELETE_WAREHOUSE.getMessage());
-        this.code = eMessageError.NOT_DELETE_WAREHOUSE.getCodErro();
+        super();
+        this.code = eMessageError.NOT_DELETE_WAREHOUSE.getCode();
     }
 }

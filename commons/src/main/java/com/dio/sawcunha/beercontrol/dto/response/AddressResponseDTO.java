@@ -18,20 +18,20 @@ import java.time.LocalDate;
 public class AddressResponseDTO {
 
     private Long id;
-    @NotEmpty(message = "It is mandatory to inform the Zip Code")
+    @NotEmpty(message = "BICV-003")
     private String zipCode;
-    @NotEmpty(message = "It is mandatory to inform the City")
+    @NotEmpty(message = "BICV-003")
     private String city;
-    @NotEmpty(message = "It is mandatory to inform the name the Address")
+    @NotEmpty(message = "BICV-003")
     private String addressName;
-    @NotEmpty(message = "It is mandatory to inform the State")
+    @NotEmpty(message = "BICV-003")
     private String state;
-    @NotEmpty(message = "It is mandatory to inform the Street")
+    @NotEmpty(message = "BICV-003")
     private String street;
-    @NotEmpty(message = "It is mandatory to inform the Country")
+    @NotEmpty(message = "BICV-003")
     private String country;
-    @NotNull(message = "The house number must be greater than 1.")
-    @Positive(message = "The house number must be greater than 1.")
+    @NotNull(message = "BICV-004")
+    @Positive(message = "BICV-004")
     private Integer number;
     private String block;
     private String complement;

@@ -3,7 +3,7 @@ package com.dio.sawcunha.beercontrol.util;
 import com.dio.sawcunha.beercontrol.dto.request.MovementRequestDTO;
 import com.dio.sawcunha.beercontrol.entity.Movement;
 import com.dio.sawcunha.beercontrol.entity.Warehouse;
-import com.dio.sawcunha.beercontrol.exception.error.QtdMoveGreaterZero;
+import com.dio.sawcunha.beercontrol.exception.error.QtdMoveGreaterZeroException;
 import com.dio.sawcunha.beercontrol.exception.error.WarehouseNotFoundException;
 import com.dio.sawcunha.beercontrol.repository.WarehouseRepository;
 import com.dio.sawcunha.beercontrol.specification.validation.ValidUpdateEntity;
@@ -27,7 +27,7 @@ public class ValidUpdateEntityMovement implements ValidUpdateEntity<Movement, Mo
 
         if(!Objects.isNull(movementRequestDTO.getQuantity()) && !movement.getQuantity().equals(movementRequestDTO.getQuantity())){
             if(movementRequestDTO.getQuantity() <= 0){
-                throw new QtdMoveGreaterZero();
+                throw new QtdMoveGreaterZeroException();
             }
             movement.setQuantity(movementRequestDTO.getQuantity());
         }

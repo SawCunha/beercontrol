@@ -51,7 +51,7 @@ public class BeerController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @PreAuthorize("hasAnyRole('BEER:READ_WRITE')")
     public void delete(@PathVariable(name = "id") final Long id) throws Exception {
         beerService.delete(id);

@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class BeerHasWarehouseDeleteException extends Exception{
 
-    private final int code;
+    private final String code;
     public BeerHasWarehouseDeleteException() {
-        super(eMessageError.BEER_HAS_WAREHOUSE_DELETE.getMessage());
-        this.code = eMessageError.BEER_HAS_WAREHOUSE_DELETE.getCodErro();
+        super();
+        this.code = eMessageError.BEER_HAS_WAREHOUSE_DELETE.getCode();
     }
 }

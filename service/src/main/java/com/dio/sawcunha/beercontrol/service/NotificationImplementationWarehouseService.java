@@ -6,10 +6,10 @@ import com.dio.sawcunha.beercontrol.entity.Warehouse;
 import com.dio.sawcunha.beercontrol.enums.eNotificationStatus;
 import com.dio.sawcunha.beercontrol.repository.NotificationWarehouseRepository;
 import com.dio.sawcunha.beercontrol.specification.service.NotificationWarehouseService;
+import com.dio.sawcunha.beercontrol.utils.locale.LocaleUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +23,20 @@ public class NotificationImplementationWarehouseService implements NotificationW
 
     private final NotificationWarehouseRepository notificationWarehouseRepository;
 
+    private final LocaleUtils localeUtils;
+
+    private String getMessage(String code){
+        return localeUtils.getMessage(code);
+    }
+
     @Async
-    public void createNotification(Movement movement, String message, Integer code){
+    public void createNotification(Movement movement, String code){
         NotificationWarehouse notificationWarehouse = new NotificationWarehouse();
         if(!Objects.isNull(code)){
             notificationWarehouse.setCode(code);
         }
         notificationWarehouse.setSuccess(Objects.isNull(code));
-        notificationWarehouse.setMessage(message);
+        notificationWarehouse.setMessage(getMessage(code));
         notificationWarehouse.setWarehouse(movement.getWarehouse());
         notificationWarehouse.setMovement(movement);
         notificationWarehouse.setCreated(LocalDateTime.now());
@@ -39,13 +45,13 @@ public class NotificationImplementationWarehouseService implements NotificationW
     }
 
     @Async
-    public void createNotification(Warehouse warehouse, String message, Integer code){
+    public void createNotification(Warehouse warehouse, String code){
         NotificationWarehouse notificationWarehouse = new NotificationWarehouse();
         if(!Objects.isNull(code)){
             notificationWarehouse.setCode(code);
         }
         notificationWarehouse.setSuccess(Objects.isNull(code));
-        notificationWarehouse.setMessage(message);
+        notificationWarehouse.setMessage(getMessage(code));
         notificationWarehouse.setWarehouse(warehouse);
         notificationWarehouse.setCreated(LocalDateTime.now());
         notificationWarehouse.setNotificationStatus(eNotificationStatus.PENDING);

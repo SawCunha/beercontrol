@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class NotDeleteMovementException extends Exception{
 
-    private final int code;
+    private final String code;
     public NotDeleteMovementException() {
-        super(eMessageError.NOT_DELETE_MOVEMENT.getMessage());
-        this.code = eMessageError.NOT_DELETE_MOVEMENT.getCodErro();
+        super();
+        this.code = eMessageError.NOT_DELETE_MOVEMENT.getCode();
     }
 }

@@ -3,15 +3,14 @@ package com.dio.sawcunha.beercontrol.entity;
 
 import com.dio.sawcunha.beercontrol.enums.eUserStatus;
 import com.dio.sawcunha.beercontrol.enums.eUserType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "BIC_USER")
@@ -19,8 +18,7 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @SequenceGenerator(name="seq_beer",sequenceName="seq_beer_id")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_beer")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long id;
 
@@ -60,11 +58,11 @@ public class User {
     private UUID identifier;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PERSON_ID", foreignKey = @ForeignKey(name = "FK_USER_PERSON"))
+    @JoinColumn(name = "PERSON_ID")
     private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PROFILE_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_USER_PROFILE"))
+    @JoinColumn(name = "PROFILE_ID", nullable = false)
     private Profile profile;
 
 }

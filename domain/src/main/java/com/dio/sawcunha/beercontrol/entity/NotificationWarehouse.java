@@ -1,15 +1,13 @@
 package com.dio.sawcunha.beercontrol.entity;
 
 import com.dio.sawcunha.beercontrol.enums.eNotificationStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "BIC_NOTIFICATION_WAREHOUSE", indexes = {
@@ -22,17 +20,16 @@ import java.util.UUID;
 public class NotificationWarehouse {
 
     @Id
-    @SequenceGenerator(name="seq_notification_warehouse",sequenceName="seq_notification_warehouse_id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_notification_warehouse")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "NOTIFICATION_WAREHOUSE_ID", nullable = false)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "WAREHOUSE_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_WAREHOUSE_NW"))
+    @JoinColumn(name = "WAREHOUSE_ID", nullable = false)
     private Warehouse warehouse;
 
     @ManyToOne
-    @JoinColumn(name = "MOVEMENT_ID", foreignKey = @ForeignKey(name = "FK_MOVEMENT_NW"))
+    @JoinColumn(name = "MOVEMENT_ID")
     private Movement movement;
 
     @Column(name = "NOTIFICATION_STATUS", nullable = false)
@@ -43,7 +40,7 @@ public class NotificationWarehouse {
     private String message;
 
     @Column(name = "CODE")
-    private Integer code;
+    private String code;
 
     @Column(name = "SUCCESS")
     private boolean success;

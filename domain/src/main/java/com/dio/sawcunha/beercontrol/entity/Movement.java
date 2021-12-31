@@ -2,17 +2,16 @@ package com.dio.sawcunha.beercontrol.entity;
 
 import com.dio.sawcunha.beercontrol.enums.eMovementStatus;
 import com.dio.sawcunha.beercontrol.enums.eMovementType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "BIC_MOVEMENT", indexes = {
         @Index(name = "IX_MOVENT", columnList = "MOVEMENT_TYPE, MOVEMENT_STATUS, WAREHOUSE_ID"),
         @Index(name = "IX_MOVEMENT_TYPE_MOVENT", columnList = "MOVEMENT_TYPE"),
@@ -23,8 +22,7 @@ import java.util.UUID;
 public class Movement {
 
     @Id
-    @SequenceGenerator(name="seq_movement",sequenceName="seq_movement_id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_movement")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "MOVEMENT_ID")
     private Long id;
 
@@ -40,7 +38,7 @@ public class Movement {
     private eMovementStatus movementStatus;
 
     @ManyToOne
-    @JoinColumn(name = "WAREHOUSE_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_WAREHOUSE_MOVEMENT"))
+    @JoinColumn(name = "WAREHOUSE_ID", nullable = false)
     private Warehouse warehouse;
 
     @Column(name = "QUANTITY", nullable = false)
@@ -60,5 +58,9 @@ public class Movement {
 
     @Column(name = "EMAIL", nullable = false)
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
 
 }

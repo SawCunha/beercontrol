@@ -1,25 +1,20 @@
 package com.dio.sawcunha.beercontrol.enums;
 
 public enum eJWTErro {
-    EXPIRED(1, "Authentication has expired"),
-    SIGNING_ERRO(2, "Error occurred while validating the token"),
-    VERIFIER_ERRO(3, "Occurred while checking the Token"),
-    NOT_HAS_TOKEN(4, "Access token has not been reported"),
-    GENERIC(0, "An error has occurred");
+    GENERIC("AUTH-001"),
+    EXPIRED("AUTH-002"),
+    SIGNING_ERRO("AUTH-003"),
+    VERIFIER_ERRO("AUTH-004"),
+    NOT_HAS_TOKEN("AUTH-005"),
+    USER_TOKEN_INVALID("AUTH-006");
 
-    private final int cod;
-    private final String message;
+    private final String code;
 
-    eJWTErro(int cod, String message) {
-        this.cod = cod;
-        this.message = message;
+    eJWTErro(String code) {
+        this.code = code;
     }
 
-    public int getCod() {
-        return cod;
-    }
-
-    public String getMessage() {
-        return message;
+    public String getCode() {
+        return code;
     }
 }

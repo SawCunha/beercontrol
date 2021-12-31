@@ -5,18 +5,17 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @Entity
 @Table(name = "BIC_PROFILE")
 public class Profile {
 
     @Id
-    @SequenceGenerator(name="seq_beer",sequenceName="seq_beer_id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_beer")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "PROFILE_ID")
     private Long id;
 

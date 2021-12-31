@@ -18,17 +18,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class BeerImplementationService implements BeerService {
+public class BeerImplementationService extends BeerControlService implements BeerService {
 
     private final BeerRepository beerRepository;
     private final WarehouseRepository warehouseRepository;
     private final BeerMapper beerMapper;
     private final ValidUpdateEntity<Beer,BeerRequestDTO> validUpdateEntityBeer;
+
+    @PostConstruct
+    public void init(){
+        logService.init(BeerControlService.class, BeerImplementationService.class.getName());
+        logService.logInfor("Init BeerImplementationService");
+    }
 
     @Transactional(readOnly = true)
     public BeerControlResponse<List<BeerResponseDTO>> findAll() {

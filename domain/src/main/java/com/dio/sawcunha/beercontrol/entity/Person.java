@@ -7,18 +7,18 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @Entity
 @Table(name = "BIC_PERSON")
 public class Person {
 
     @Id
     @Column(name = "PERSON_ID")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_beer")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "NAME")
@@ -28,7 +28,7 @@ public class Person {
     @Column(name = "BIRTHDAY")
     private LocalDate birthday;
     @Column(name = "TAX_IDENTIFIER", unique = true)
-    private String cpf;
+    private String taxIdentifier;
     @Column(name = "GENDER")
     @Enumerated(value = EnumType.STRING)
     private eSex sex;

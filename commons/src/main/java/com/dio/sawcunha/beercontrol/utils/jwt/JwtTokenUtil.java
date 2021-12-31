@@ -1,6 +1,7 @@
 package com.dio.sawcunha.beercontrol.utils.jwt;
 
 import com.dio.sawcunha.beercontrol.enums.eJWTErro;
+import com.dio.sawcunha.beercontrol.exception.error.TokenJWTException;
 import io.fusionauth.jwt.*;
 import io.fusionauth.jwt.domain.JWT;
 import io.fusionauth.jwt.hmac.HMACSigner;
@@ -51,14 +52,13 @@ public class JwtTokenUtil implements Serializable {
             token = token.replace("Bearer ", "").trim();
             jwt = JWT.getDecoder().decode(token, verifier);
         } catch (JWTSigningException jwtSigningException){
-            throw new Exception(eJWTErro.SIGNING_ERRO.toString());
+            throw new TokenJWTException(eJWTErro.SIGNING_ERRO.getCode());
         } catch (JWTVerifierException jwtVerifierException){
-            throw new Exception(eJWTErro.VERIFIER_ERRO.toString());
+            throw new TokenJWTException(eJWTErro.VERIFIER_ERRO.getCode());
         } catch (JWTExpiredException jwtExpiredException){
-            throw new Exception(eJWTErro.EXPIRED.toString());
+            throw new TokenJWTException(eJWTErro.EXPIRED.getCode());
         } catch (JWTException e){
-
-            throw new Exception(eJWTErro.GENERIC.toString());
+            throw new TokenJWTException(eJWTErro.GENERIC.getCode());
         }
         return jwt;
     }

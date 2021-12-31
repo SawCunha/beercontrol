@@ -5,7 +5,6 @@ import com.dio.sawcunha.beercontrol.dto.response.AddressResponseDTO;
 import com.dio.sawcunha.beercontrol.entity.Address;
 import com.dio.sawcunha.beercontrol.entity.Person;
 import com.dio.sawcunha.beercontrol.exception.error.AddressNotFoundIDException;
-import com.dio.sawcunha.beercontrol.exception.error.ExceptionPeopleManager;
 import com.dio.sawcunha.beercontrol.exception.error.IDPathDifferentBodyException;
 import com.dio.sawcunha.beercontrol.exception.error.PersonNotFoundIDException;
 import com.dio.sawcunha.beercontrol.mapper.AddressMapper;
@@ -74,7 +73,7 @@ public class AddressImplementationService implements AddressService {
     }
 
     @Transactional
-    public BeerControlResponse<AddressResponseDTO> save(Long idPerson, AddressRequestDTO addressDTO) throws ExceptionPeopleManager {
+    public BeerControlResponse<AddressResponseDTO> save(Long idPerson, AddressRequestDTO addressDTO) throws Exception {
         Person person = personRepository.findById(idPerson).orElseThrow(PersonNotFoundIDException::new);
         addressDTO.setPerson(null);
         Address address = addressMapper.toModel(addressDTO);
@@ -83,7 +82,7 @@ public class AddressImplementationService implements AddressService {
     }
 
     @Transactional
-    public BeerControlResponse<AddressResponseDTO> update(Long id, AddressRequestDTO addressDTO) throws ExceptionPeopleManager {
+    public BeerControlResponse<AddressResponseDTO> update(Long id, AddressRequestDTO addressDTO) throws Exception {
         validIDPathAndBody(id,addressDTO);
         Address address = addressRepository.findById(id).orElseThrow(AddressNotFoundIDException::new);
         addressDTO.setPerson(null);

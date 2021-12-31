@@ -33,8 +33,8 @@ public class PersonImplementationService implements PersonService {
     }
 
     @Transactional(readOnly = true)
-    public BeerControlResponse<PersonResponseDTO> findByCpf(String cpf) throws PersonNotFoundCPFException {
-        Person person = personRepository.findByCpf(cpf).orElseThrow(PersonNotFoundCPFException::new);
+    public BeerControlResponse<PersonResponseDTO> findByTaxIdentifier(String taxIdentifier) throws PersonNotFoundTaxIdentifierException {
+        Person person = personRepository.findByTaxIdentifier(taxIdentifier).orElseThrow(PersonNotFoundTaxIdentifierException::new);
         return personMapper.toResponseDTO(person);
     }
 
@@ -45,10 +45,10 @@ public class PersonImplementationService implements PersonService {
     }
 
     @Transactional
-    public BeerControlResponse<PersonResponseDTO> save(@Valid PersonRequestDTO personDTO) throws PersonAlreadyRegistersCpfException {
-        Optional<Person> personOptional = personRepository.findByCpf(personDTO.getCpf());
+    public BeerControlResponse<PersonResponseDTO> save(@Valid PersonRequestDTO personDTO) throws PersonAlreadyRegistersTaxIdentifierException {
+        Optional<Person> personOptional = personRepository.findByTaxIdentifier(personDTO.getTaxIdentifier());
         if(personOptional.isPresent()){
-            throw new PersonAlreadyRegistersCpfException();
+            throw new PersonAlreadyRegistersTaxIdentifierException();
         }
         Person person = personMapper.toModel(personDTO);
         person.getAddresses().forEach(address -> address.setPerson(person));
@@ -66,7 +66,7 @@ public class PersonImplementationService implements PersonService {
     }
 
     @Transactional
-    public BeerControlResponse<PersonResponseDTO> update(Long id, @Valid PersonRequestDTO personDTO) throws ExceptionPeopleManager {
+    public BeerControlResponse<PersonResponseDTO> update(Long id, @Valid PersonRequestDTO personDTO) throws Exception {
         validIDPathAndBody(id,personDTO);
         if(personRepository.existsById(id)) throw new PersonNotFoundIDException();
         personDTO.setId(id);

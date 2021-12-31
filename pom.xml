@@ -29,7 +29,7 @@
         <spring.version>2.6.1</spring.version>
         <thymeleaf.version>3.0.13.RELEASE</thymeleaf.version>
         <h2database.version>2.0.204</h2database.version>
-        <swagger.version>2.9.2</swagger.version>
+        <swagger.version>3.0.0</swagger.version>
         <javafaker.version>1.0.2</javafaker.version>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
         <sonar.login>0dd60f8f7bbe484bb58139ac3de90f329169d5b5</sonar.login>
@@ -48,6 +48,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
             <plugin>
@@ -120,13 +121,7 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.0.2155</version>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
+            
         </plugins>
     </build>
 
@@ -165,11 +160,6 @@
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -197,25 +187,6 @@
                 <groupId>nz.net.ultraq.thymeleaf</groupId>
                 <artifactId>thymeleaf-layout-dialect</artifactId>
                 <version>${thymeleaf.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <version>${spring.version}</version>
-                <scope>runtime</scope>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring.version}</version>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.junit.vintage</groupId>
-                        <artifactId>junit-vintage-engine</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -261,11 +232,6 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
                 <version>${spring.version}</version>
                 <scope>runtime</scope>
@@ -282,6 +248,11 @@
                         <artifactId>junit-vintage-engine</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>5.3.9</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -324,11 +295,6 @@
                 <version>${lombok.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
                 <version>4.5.0</version>
@@ -337,11 +303,6 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.3.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${gson.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.fusionauth</groupId>

@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class UserNotFoundException extends Exception{
 
-    private final int code;
+    private final String code;
     public UserNotFoundException() {
-        super(eMessageError.USER_NOT_FOUND.getMessage());
-        this.code = eMessageError.USER_NOT_FOUND.getCodErro();
+        super();
+        this.code = eMessageError.USER_NOT_FOUND.getCode();
     }
 }

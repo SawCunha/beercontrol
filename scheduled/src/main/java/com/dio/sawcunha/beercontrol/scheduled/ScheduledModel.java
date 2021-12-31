@@ -2,7 +2,6 @@ package com.dio.sawcunha.beercontrol.scheduled;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 
 public abstract class ScheduledModel {
 
@@ -14,7 +13,7 @@ public abstract class ScheduledModel {
         this.name = name;
     }
 
-    @Scheduled(fixedRateString = "${scheduling.default}")
+//    @Scheduled(fixedRateString = "${scheduled.default}")
     public void run(){
         log.info(String.format("Starting the Scheduled: %s.", name));
         if(isRun()){

@@ -1,6 +1,7 @@
 package com.dio.sawcunha.beercontrol.service;
 
 import com.dio.sawcunha.beercontrol.entity.Permissions;
+import com.dio.sawcunha.beercontrol.enums.eUserStatus;
 import com.dio.sawcunha.beercontrol.repository.UserRepository;
 import com.dio.sawcunha.beercontrol.specification.service.UserService;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,6 @@ public class UserImplementationService implements UserService {
     @Override
     public boolean validIdentifier(String identifier) {
         UUID uuid = UUID.fromString(identifier);
-        return userRepository.existsByIdentifier(uuid);
+        return userRepository.existsByIdentifierAndUserStatus(uuid, eUserStatus.ACTIVE);
     }
 }

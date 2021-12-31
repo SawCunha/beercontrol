@@ -1,11 +1,12 @@
 package com.dio.sawcunha.beercontrol.service;
 
-import com.dio.sawcunha.beercontrol.config.BeerControlProperties;
 import com.dio.sawcunha.beercontrol.dto.request.MovementRequestDTO;
 import com.dio.sawcunha.beercontrol.dto.response.MovementResponseDTO;
 import com.dio.sawcunha.beercontrol.entity.Movement;
 import com.dio.sawcunha.beercontrol.entity.Warehouse;
+import com.dio.sawcunha.beercontrol.enums.eMessageNotification;
 import com.dio.sawcunha.beercontrol.enums.eMovementStatus;
+import com.dio.sawcunha.beercontrol.exception.enums.eMessageError;
 import com.dio.sawcunha.beercontrol.exception.error.*;
 import com.dio.sawcunha.beercontrol.mapper.MovementMapper;
 import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
@@ -17,7 +18,6 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +36,6 @@ public class MovementImplementationService implements MovementService {
     private final MovementMapper movementMapper;
     private final ValidUpdateEntity<Movement, MovementRequestDTO> validUpdateEntity;
     private final NotificationImplementationWarehouseService notificationImplementationWarehouseService;
-    private final BeerControlProperties beerControlProperties;
 
     @Override
     public BeerControlResponse<List<MovementResponseDTO>> findAll() {
@@ -82,7 +81,7 @@ public class MovementImplementationService implements MovementService {
     }
 
     @Transactional(rollbackFor = { MovementNotFoundIdentifierException.class, Exception.class, MovementNotFoundException.class,
-                                   NotUpdateMovementException.class, QtdMoveGreaterZero.class, WarehouseNotFoundException.class }
+                                   NotUpdateMovementException.class, QtdMoveGreaterZeroException.class, WarehouseNotFoundException.class }
     )
     public BeerControlResponse<MovementResponseDTO> update(UUID identifier, MovementRequestDTO movementRequestDTO) throws Exception {
         if(Objects.isNull(movementRequestDTO.getId()) || movementRequestDTO.getId() <= 0){
@@ -128,13 +127,13 @@ public class MovementImplementationService implements MovementService {
                 warehouse.setUpdate(LocalDateTime.now());
                 movement.setWarehouse(warehouseRepository.save(warehouse));
                 movement.setConfirmation(LocalDateTime.now());
-                notificationImplementationWarehouseService.createNotification(movement,beerControlProperties.getMsg_success(),null);
+                notificationImplementationWarehouseService.createNotification(movement, eMessageNotification.SUCCESS.getCode());
             } catch (WarehouseNotMovementException e){
                 movement.setMovementStatus(eMovementStatus.ERROR);
-                notificationImplementationWarehouseService.createNotification(movement,e.getMessage(),e.getCode());
+                notificationImplementationWarehouseService.createNotification(movement,e.getCode());
             } catch (Exception exception){
                 movement.setMovementStatus(eMovementStatus.ERROR);
-                notificationImplementationWarehouseService.createNotification(movement,exception.getMessage(),99);
+                notificationImplementationWarehouseService.createNotification(movement, eMessageError.GENERIC.getCode());
             } finally {
                 movementRepository.save(movement);
             }

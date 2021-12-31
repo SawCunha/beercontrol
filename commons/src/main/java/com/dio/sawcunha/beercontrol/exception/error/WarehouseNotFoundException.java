@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class WarehouseNotFoundException extends Exception{
 
-    private final int code;
+    private final String code;
     public WarehouseNotFoundException() {
-        super(eMessageError.WAREHOUSE_NOT_FOUND.getMessage());
-        this.code = eMessageError.WAREHOUSE_NOT_FOUND.getCodErro();
+        super();
+        this.code = eMessageError.WAREHOUSE_NOT_FOUND.getCode();
     }
 }

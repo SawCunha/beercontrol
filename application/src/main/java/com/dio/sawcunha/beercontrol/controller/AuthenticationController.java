@@ -6,12 +6,12 @@ import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
 import com.dio.sawcunha.beercontrol.specification.service.AuthenticationService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -19,12 +19,10 @@ import javax.validation.Valid;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthenticationController {
 
-    @Autowired
     private AuthenticationService authenticationService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @Cacheable("auth")
     public BeerControlResponse<AuthResponseDTO> login(@RequestBody @Valid final AuthRequestDTO authRequestDTO) throws Exception {
         return authenticationService.login(authRequestDTO);
     }

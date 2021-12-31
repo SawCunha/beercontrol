@@ -1,8 +1,8 @@
 # Beer Inventory Control.
 
-Projeto para aprendizado das tecnologia Spring entre outros frameworks
+Projeto para aprendizado das tecnologias Spring entre outros frameworks
 
-Utilizando Spring boot e suas dependências.
+Utilizando Spring boot e as suas dependências.
 
 # Framework Utilizando
 - [Spring Boot](https://spring.io/projects/spring-boot)
@@ -39,12 +39,15 @@ Utilizando Spring boot e suas dependências.
 ## Roadmap 2021
 
 - Adicionar i18n
-- Ajuste nas mensagens de erro
+- Ajuste nas mensagens de erro (Parte 1)
+- Adicionar Logger (Parte 1)
 
 ## Roadmap 2022
 
 - API de usuário
-- Melhoria nas demais APIs
+- Revisão e melhoria nas demais APIs
+- Ajuste no swagger
+- Criação de Index e Unique na Database
 - Criação de Testes para Services
 - Criação de Testes para Repository
 - Criação de Testes para Controller

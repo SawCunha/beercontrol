@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    Optional<Person> findByCpf(String cpf);
+    Optional<Person> findByTaxIdentifier(String taxIdentifier);
 
 }

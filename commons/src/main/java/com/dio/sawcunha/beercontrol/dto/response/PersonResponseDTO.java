@@ -2,10 +2,12 @@ package com.dio.sawcunha.beercontrol.dto.response;
 
 import com.dio.sawcunha.beercontrol.enums.eSex;
 import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,8 +26,8 @@ public class PersonResponseDTO {
     @NotEmpty
     private String surname;
     @NotEmpty
-    @CPF(message = "The CPF informed must be valid")
-    private String cpf;
+    @NotNull(message = "BICV-007")
+    private String taxIdentifier;
     @NotNull
     private LocalDate birthday;
     @NotNull
@@ -42,20 +44,20 @@ public class PersonResponseDTO {
     @Builder
     public static class PersonAddressDTO {
         private Long id;
-        @NotEmpty(message = "It is mandatory to inform the Zip Code")
+        @NotEmpty(message = "BICV-003")
         private String zipCode;
-        @NotEmpty(message = "It is mandatory to inform the City")
+        @NotEmpty(message = "BICV-003")
         private String city;
-        @NotEmpty(message = "It is mandatory to inform the name the Address")
+        @NotEmpty(message = "BICV-003")
         private String addressName;
-        @NotEmpty(message = "It is mandatory to inform the State")
+        @NotEmpty(message = "BICV-003")
         private String state;
-        @NotEmpty(message = "It is mandatory to inform the Street")
+        @NotEmpty(message = "BICV-003")
         private String street;
-        @NotEmpty(message = "It is mandatory to inform the Country")
+        @NotEmpty(message = "BICV-003")
         private String country;
-        @NotNull(message = "The house number must be greater than 1.")
-        @Positive(message = "The house number must be greater than 1.")
+        @NotNull(message = "BICV-004")
+        @Positive(message = "BICV-004")
         private Integer number;
         private String block;
         private String complement;
@@ -69,16 +71,16 @@ public class PersonResponseDTO {
     public static class PersonPhoneDTO {
         private Long id;
 
-        @NotNull(message = "The international prefix must be between 1 to 999")
-        @Positive(message = "The international prefix must be between 1 to 999")
-        @Max(value = 999, message = "The international prefix must be between 1 to 999")
+        @NotNull(message = "BICV-009")
+        @Positive(message = "BICV-009")
+        @Max(value = 999, message = "BICV-009")
         private Integer prefixInternattional;
 
         @Positive
-        @Max(value = 99,message = "The national prefix must be between 1 to 99")
+        @Max(value = 99,message = "BICV-010")
         private Integer prefixNational;
-        @NotNull(message = "The phone number must be entered")
-        @NotEmpty(message = "The phone number must be entered")
+        @NotNull(message = "BICV-011")
+        @NotEmpty(message = "BICV-011")
         private String number;
     }
 }

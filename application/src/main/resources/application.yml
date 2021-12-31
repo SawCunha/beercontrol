@@ -1,39 +1,3 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /beercontrol
-
 spring:
   profiles:
     default: h2
-
-task:
-  corePoolSize: 4
-  maxPoolSize: 4
-  queueCapacity: 500
-  threadNamePrefix: BeerControlLookup-
-
-application:
-  description: Projeto desenvolvido no Bootcamp GFT Start ## 2Java
-  version: 1.0.0  7-BIC
-  msg_success: Moving was successfully carried out to the warehouse.
-  encrypt_password: BIC
-
-scheduling:
-  default: 30000
-  notification_time: 30000
-  movement_time: 30000
-
-logging:
-  exception-conversion-word:
-  level:
-    liquibase: INFO
-
-liquibase:
-  change-log: classpath:db.changelog-master.yaml
-
-jwt:
-  secret: usersecretforjwtauthenticateoratoroeuaroupadoreideromalalalameudeuscomoessabencaodechave
-  valid: 60 #Define em Minutos o tempo valido do Token
-
-

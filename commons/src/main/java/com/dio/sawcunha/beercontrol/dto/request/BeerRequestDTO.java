@@ -17,19 +17,19 @@ public class BeerRequestDTO {
 
     private Long id;
 
-    @NotEmpty(message = "The identifier must be informed.")
+    @NotEmpty(message = "BICV-001")
     private String identifier;
 
-    @NotEmpty(message = "The name must be informed.")
+    @NotEmpty(message = "BICV-001")
     private String name;
 
-    @NotEmpty(message = "The imageBase64 must be informed.")
+    @NotEmpty(message = "BICV-001")
     private String photo;
 
-    @NotEmpty(message = "The brand must be informed.")
+    @NotEmpty(message = "BICV-001")
     private String brand;
 
-    @NotNull(message = "The type of beer must be informed and follow the types stated in the documentation.")
+    @NotNull(message = "BICV-002")
     private eBeerType beerType;
 
 }

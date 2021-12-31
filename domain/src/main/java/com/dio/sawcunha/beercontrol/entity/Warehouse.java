@@ -1,13 +1,12 @@
 package com.dio.sawcunha.beercontrol.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "BIC_WAREHOUSE", indexes = {
@@ -17,13 +16,12 @@ import java.time.LocalDateTime;
 public class Warehouse {
 
     @Id
-    @SequenceGenerator(name="seq_warehouse",sequenceName="seq_warehouse_id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_warehouse")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "WAREHOUSE_ID")
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BEER_ID", nullable = false, foreignKey = @ForeignKey(name = "FK_BEER_WAREHOUSE"), unique = true)
+    @JoinColumn(name = "BEER_ID", nullable = false)
     private Beer beer;
 
     @Column(name = "QUANTITY_MIN", nullable = false)

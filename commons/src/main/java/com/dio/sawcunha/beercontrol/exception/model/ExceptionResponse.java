@@ -11,6 +11,7 @@ import java.util.List;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ExceptionResponse {
     private final String message;
-    private final int codErro;
+    private final String codeError;
     private final List<AttributeNotValid> validationErrors;
+
 }

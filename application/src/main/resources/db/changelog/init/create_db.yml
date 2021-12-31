@@ -4,7 +4,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_PERSON
             dbms:  'h2,  mysql, postgresql'
             columns:
@@ -51,7 +50,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_ADDRESS
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -133,13 +131,11 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERSON_ID
                     referencedTableName: BIC_PERSON
-                    
   - changeSet:
       id: create_BIC_PHONE
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_PHONE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -179,13 +175,11 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERSON_ID
                     referencedTableName: BIC_PERSON
-                    
   - changeSet:
       id: create_BIC_PROFILE
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_PROFILE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -215,7 +209,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_PERMISSIONS
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -244,7 +237,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_PROFILE_PERMISSIONS
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -258,7 +250,6 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PROFILE_ID
                     referencedTableName: BIC_PROFILE
-                    
               - column:
                   name: PERMISSIONS_ID
                   autoIncrement: false
@@ -269,7 +260,6 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERMISSIONS_ID
                     referencedTableName: BIC_PERMISSIONS
-                    
         - addPrimaryKey:
             columnNames: PROFILE_ID, PERMISSIONS_ID
             constraintName: PK_BIC_PROFILE_PERMISSIONS
@@ -280,7 +270,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_BEER
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -333,7 +322,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_USER
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -423,7 +411,6 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: PERSON_ID
                     referencedTableName: BIC_PERSON
-                    
               - column:
                   name: PROFILE_ID
                   autoIncrement: false
@@ -440,7 +427,6 @@ databaseChangeLog:
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_WAREHOUSE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -486,13 +472,13 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: BEER_ID
                     referencedTableName: BIC_BEER
-                    
+                    unique: true
+
   - changeSet:
       id: create_BIC_MOVEMENT
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_MOVEMENT
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -569,13 +555,22 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: WAREHOUSE_ID
                     referencedTableName: BIC_WAREHOUSE
+              - column:
+                  name: USER_ID
+                  autoIncrement: false
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_USER_ID_BIC_WAREHOUSE
+                    validateForeignKey: true
+                    referencedColumnNames: USER_ID
+                    referencedTableName: BIC_USER
                     
   - changeSet:
       id: create_BIC_NOTIFICATION_WAREHOUSE
       author: SamuelCunha
       changes:
         - createTable:
-            
             tableName: BIC_NOTIFICATION_WAREHOUSE
             dbms: 'h2,  mysql, postgresql'
             columns:
@@ -590,7 +585,7 @@ databaseChangeLog:
               - column:
                   name: CODE
                   autoIncrement: false
-                  type: INTEGER
+                  type: VARCHAR(255)
                   constraints:
                     nullable: false
               - column:
@@ -633,7 +628,6 @@ databaseChangeLog:
                     validateForeignKey: true
                     referencedColumnNames: MOVEMENT_ID
                     referencedTableName: BIC_MOVEMENT
-                    
               - column:
                   name: WAREHOUSE_ID
                   autoIncrement: false

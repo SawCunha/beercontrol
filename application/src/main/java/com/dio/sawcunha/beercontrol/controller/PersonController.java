@@ -2,7 +2,6 @@ package com.dio.sawcunha.beercontrol.controller;
 
 import com.dio.sawcunha.beercontrol.dto.request.PersonRequestDTO;
 import com.dio.sawcunha.beercontrol.dto.response.PersonResponseDTO;
-import com.dio.sawcunha.beercontrol.exception.error.ExceptionPeopleManager;
 import com.dio.sawcunha.beercontrol.model.BeerControlResponse;
 import com.dio.sawcunha.beercontrol.specification.service.PersonService;
 import lombok.AllArgsConstructor;
@@ -36,11 +35,11 @@ public class PersonController {
         return personService.findById(id);
     }
 
-    @GetMapping("/cpf/{cpf}")
+    @GetMapping("/tax-identifier/{taxIdentifier}")
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasAnyRole('PERSON:READ_WRITE','PERSON:READ')")
-    public BeerControlResponse<PersonResponseDTO> findByCpf(@PathVariable String cpf) throws ExceptionPeopleManager {
-        return personService.findByCpf(cpf);
+    public BeerControlResponse<PersonResponseDTO> findByTaxIdentifier(@PathVariable String taxIdentifier) throws Exception {
+        return personService.findByTaxIdentifier(taxIdentifier);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

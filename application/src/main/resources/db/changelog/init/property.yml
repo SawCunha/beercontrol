@@ -24,10 +24,10 @@ databaseChangeLog:
       name: typeBoolean
       value: TINYINT(1)
   - property:
-      dbms: postgresql
+      dbms: 'postgresql, h2'
       name: UUIDType
       value: uuid
   - property:
-      dbms: 'mysql, h2'
+      dbms: 'mysql'
       name: UUIDType
       value: VARCHAR(255)

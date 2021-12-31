@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 public class QtdMinimumEqualOrGreaterMaximun extends Exception{
 
-    private final int code;
+    private final String code;
     public QtdMinimumEqualOrGreaterMaximun() {
-        super(eMessageError.QTD_MIN_EG_MAX.getMessage());
-        this.code = eMessageError.QTD_MIN_EG_MAX.getCodErro();
+        super();
+        this.code = eMessageError.QTD_MIN_EG_MAX.getCode();
     }
 }

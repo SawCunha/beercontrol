@@ -1,14 +1,14 @@
 package com.dio.sawcunha.beercontrol.exception.error;
 
 import com.dio.sawcunha.beercontrol.exception.enums.eMessageError;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import lombok.Getter;
 
-@ResponseStatus(HttpStatus.BAD_REQUEST)
-public class IDPathDifferentBodyException extends ExceptionPeopleManager{
+@Getter
+public class IDPathDifferentBodyException extends Exception{
 
+    private final String code;
     public IDPathDifferentBodyException() {
-        super(eMessageError.ID_PATH_DIFFERENT_BODY.getMessage());
-        this.messageError = eMessageError.ID_PATH_DIFFERENT_BODY;
+        super();
+        this.code = eMessageError.ID_PATH_DIFFERENT_BODY.getCode();
     }
 }

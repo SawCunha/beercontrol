@@ -20,16 +20,16 @@ public class PhoneRequestDTO {
 
     private Long id;
 
-    @NotNull(message = "The international prefix must be between 1 to 999")
-    @Positive(message = "The international prefix must be between 1 to 999")
-    @Max(value = 999, message = "The international prefix must be between 1 to 999")
+    @NotNull(message = "BICV-009")
+    @Positive(message = "BICV-009")
+    @Max(value = 999, message = "BICV-009")
     private Integer prefixInternattional;
 
     @Positive
-    @Max(value = 99,message = "The national prefix must be between 1 to 99")
+    @Max(value = 99,message = "BICV-010")
     private Integer prefixNational;
-    @NotNull(message = "The phone number must be entered")
-    @NotEmpty(message = "The phone number must be entered")
+    @NotNull(message = "BICV-011")
+    @NotEmpty(message = "BICV-011")
     private String number;
 
     private PhonePersonDTO person;
